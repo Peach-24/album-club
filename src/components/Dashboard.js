@@ -1,29 +1,63 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "../App.css";
-// import firebase from "firebase";
+import firebase from "firebase";
+import "firebase/firebase-firestore";
 
 export default function Dashboard() {
+  const [albums, setAlbums] = useState([]);
+  const [loaded, setLoaded] = useState(false);
+
+  const fetchAlbums = () => {
+    const db = firebase.firestore();
+    db.collection("submissions")
+      .get()
+      .then((querySnapshot) => {
+        let albumsList = [];
+        querySnapshot.forEach((doc) => {
+          albumsList.push(doc.data());
+        });
+        setAlbums(albumsList);
+        setLoaded(true);
+      });
+  };
+
+  useEffect(() => {
+    fetchAlbums();
+  }, [albums]);
+
   return (
     <div id="current-album-container">
-      <div>
-        <h4>Current Album</h4>
-        <a href="https://placeholder.com">
-          <img
-            id="album-cover"
-            alt="placeholder"
-            src="https://via.placeholder.com/175"
-          />
-        </a>
-      </div>
-      <button id="listen-spotify-button">Listen to on Spotify</button>
-      <div>
-        <div id="current-album-info">
-          <p>Artist:</p>
-          <p>Album:</p>
-          <p>Listening dates</p>
-        </div>
-        <button>Write a review... ✍️</button>
-      </div>
+      {loaded ? (
+        <>
+          <div>
+            <h4>Current Album</h4>
+            <a href={albums[0].spotify_link}>
+              <img
+                id="album-cover"
+                alt="placeholder"
+                src="https://via.placeholder.com/175"
+              />
+            </a>
+          </div>
+          <a href={albums[0].spotify_link}>
+            <button id="listen-spotify-button">Listen to on Spotify</button>
+          </a>
+          <div>
+            <div id="current-album-info">
+              <p>
+                Artist: <strong>{albums[0].artist_name}</strong>
+              </p>
+              <p>
+                Album: <strong>{albums[0].album_name}</strong>
+              </p>
+              <p>Listening dates: ...</p>
+            </div>
+            <button>Write a review... ✍️</button>
+          </div>
+        </>
+      ) : (
+        <p>Loading</p>
+      )}
     </div>
   );
 }

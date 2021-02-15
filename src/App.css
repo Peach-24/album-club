@@ -115,3 +115,34 @@ h3 {
 .suggest-input {
   margin: 1rem;
 }
+
+/******** Schedule  ******/
+
+#schedule-container {
+  background-color: rgb(250, 171, 75);
+  height: 100vh;
+  width: 100%;
+  text-align: center;
+  margin: auto;
+  padding: 1rem;
+}
+
+#schedule-box {
+  background-color: rgba(255, 255, 255, 0.411);
+  width: 80%;
+  margin: auto;
+}
+
+#schedule-list {
+  background-color: rgba(255, 255, 255, 0.164);
+  width: 100%;
+  margin: auto;
+  margin-left: 0px;
+}
+
+#schedule-list-item {
+  margin-top: 1rem;
+  background-color: #fff;
+  list-style: none;
+  margin-left: 0px;
+}

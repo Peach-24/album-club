@@ -41,9 +41,9 @@ export default function App() {
             <Route exact path="/">
               <Redirect to="/home" />
             </Route>
-            <Route path="/home" component={DashboardScreen} />
             <Route path="/suggest" component={SuggestScreen} />
             <Route path="/schedule" component={ScheduleScreen} />
+            <Route path="/home" component={DashboardScreen} />
           </Switch>
         </BrowserRouter>
       ) : (
