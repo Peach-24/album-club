@@ -1,38 +1,59 @@
-.App {
+/***** Navigation ******/
+
+.navbar {
+  border-bottom: solid 1px #ebebeb;
+}
+.bottom-tab-nav {
+  border-top: solid 1px #ebebeb;
+  background-color: #fff;
+}
+.nav-link,
+.bottom-nav-link {
+  color: #55575b;
+}
+.bottom-nav-link.active {
+  color: #922c88;
+}
+.bottom-tab-label {
+  font-size: 12px;
+}
+
+/****** General ******/
+
+h2,
+h3 {
+  color: rgb(15, 14, 14);
+}
+
+/****** DASHBOARD ******/
+
+#current-album-container {
+  background-color: rgba(127, 255, 212, 0.342);
+  width: 100%;
+  height: 100vh;
+  margin: auto;
+  padding-top: 2rem;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+#current-album-info {
+  text-align: left;
+  width: 80%;
+  margin: auto;
+  padding: 1.5rem 1rem 1rem;
+  font-size: 14px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+#listen-spotify-button {
+  margin: 1rem;
+  background-color: black;
+  border: black 0;
+  color: greenyellow;
+  padding: 5px;
+  border-radius: 5px;
+  box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.61);
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+#album-cover {
+  margin: 10px;
 }
