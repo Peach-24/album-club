@@ -105,7 +105,7 @@ h3 {
 }
 
 #submit-album-form {
-  width: 80%;
+  width: 90%;
   margin: 1.5rem auto 1.5rem;
   text-align: center;
   background-color: #fff;
@@ -113,7 +113,11 @@ h3 {
 }
 
 .suggest-input {
-  margin: 1rem;
+  margin: 8px;
+}
+
+#suggest-submit-button {
+  margin-top: 1rem;
 }
 
 /******** Schedule  ******/

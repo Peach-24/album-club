@@ -14,15 +14,15 @@ import Login from "./components/auth/Login";
 
 export default function App() {
   const [loggedIn, setLoggedIn] = useState(false);
-  const [user, setUser] = useState({});
+  // const [user, setUser] = useState({});
 
   const signIn = (email, password) => {
     firebase
       .auth()
       .signInWithEmailAndPassword(email, password)
       .then((userCredential) => {
-        setUser(userCredential.user);
-        console.log(user);
+        // console.log(user);
+        // setUser(userCredential.user);
         setLoggedIn(true);
       })
       .catch((error) => {
