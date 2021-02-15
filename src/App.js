@@ -22,6 +22,7 @@ export default function App() {
       .signInWithEmailAndPassword(email, password)
       .then((userCredential) => {
         setUser(userCredential.user);
+        console.log(user);
         setLoggedIn(true);
       })
       .catch((error) => {
@@ -33,12 +34,13 @@ export default function App() {
 
   return (
     <div>
-      {/* <h1> Album Club </h1> */}
       {loggedIn ? (
         <BrowserRouter>
           <Navigation />
           <Switch>
-            {/* <Redirect  */}
+            <Route exact path="/">
+              <Redirect to="/home" />
+            </Route>
             <Route path="/home" component={DashboardScreen} />
             <Route path="/suggest" component={SuggestScreen} />
             <Route path="/schedule" component={ScheduleScreen} />

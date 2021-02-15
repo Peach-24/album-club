@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faSearch,
   faHome,
-  faUserCircle,
+  // faUserCircle,
   faPlus,
 } from "@fortawesome/free-solid-svg-icons";
 
