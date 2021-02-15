@@ -43,10 +43,15 @@ const Navigation = (props) => {
         role="navigation"
       >
         <div className="container-fluid">
-          <a className="navbar-brand" href="/home">
+          {/* <a className="navbar-brand" href="/home">
             🎶
-          </a>
+          </a> */}
           <Nav className="ml-auto">
+            <NavItem>
+              <NavLink to="/home" className="nav-link">
+                Dashboard
+              </NavLink>
+            </NavItem>
             <NavItem>
               <NavLink to="/schedule" className="nav-link">
                 Schedule
@@ -57,11 +62,6 @@ const Navigation = (props) => {
                 Suggest
               </NavLink>
             </NavItem>
-            {/* <NavItem>
-              <NavLink to="/profile" className="nav-link">
-                Profile
-              </NavLink>
-            </NavItem> */}
           </Nav>
         </div>
       </nav>

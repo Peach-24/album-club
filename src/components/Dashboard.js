@@ -19,6 +19,7 @@ export default function Dashboard() {
         <p>Album:</p>
         <p>Listening dates</p>
       </div>
+      <button>Write a review... ✍️</button>
     </div>
   );
 }

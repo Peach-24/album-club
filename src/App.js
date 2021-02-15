@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./index.css";
+import "./App.css";
 
 import firebase from "firebase";
 import "firebase/auth";
@@ -10,13 +10,11 @@ import Navigation from "./components/Navigation";
 import DashboardScreen from "./components/Dashboard";
 import ScheduleScreen from "./components/Schedule";
 import SuggestScreen from "./components/Suggest";
+import Login from "./components/auth/Login";
 
 export default function App() {
   const [loggedIn, setLoggedIn] = useState(false);
   const [user, setUser] = useState({});
-
-  let email = "test@test.com";
-  let password = "";
 
   const signIn = (email, password) => {
     firebase
@@ -40,23 +38,14 @@ export default function App() {
         <BrowserRouter>
           <Navigation />
           <Switch>
+            {/* <Redirect  */}
             <Route path="/home" component={DashboardScreen} />
             <Route path="/suggest" component={SuggestScreen} />
             <Route path="/schedule" component={ScheduleScreen} />
           </Switch>
         </BrowserRouter>
       ) : (
-        <div>
-          <input
-            id="password-login"
-            type="password"
-            placeholder="password"
-            onChange={(event) => {
-              password = event.target.value;
-            }}
-          ></input>
-          <button onClick={() => signIn(email, password)}> 🎶 </button>
-        </div>
+        <Login signIn={signIn} />
       )}
     </div>
   );
