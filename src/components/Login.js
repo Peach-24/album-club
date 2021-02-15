@@ -1,22 +1,22 @@
 import React from "react";
 
 const Login = ({ login }) => {
-  let email = "test@test.com";
+  let email = "";
   let password = "";
 
   return (
     <div className="user-login-box">
-      {/* <input
+      <input
         id="email-login"
         placeholder="email"
         onChange={(event) => {
           email = event.target.value;
         }}
-      ></input> */}
+      ></input>
       <input
         id="password-login"
         type="password"
-        placeholder="Enter password..."
+        placeholder="password"
         onChange={(event) => {
           password = event.target.value;
         }}
@@ -28,7 +28,7 @@ const Login = ({ login }) => {
           login(email, password);
         }}
       >
-        🎶
+        Login
       </button>
     </div>
   );
