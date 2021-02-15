@@ -6,6 +6,7 @@ import {
   faSearch,
   faHome,
   faUserCircle,
+  faPlus,
 } from "@fortawesome/free-solid-svg-icons";
 
 import "../App.css";
@@ -17,15 +18,20 @@ const tabs = [
     label: "Home",
   },
   {
+    route: "/suggest",
+    icon: faPlus,
+    label: "Suggest",
+  },
+  {
     route: "/schedule",
     icon: faSearch,
     label: "Schedule",
   },
-  {
-    route: "/profile",
-    icon: faUserCircle,
-    label: "Profile",
-  },
+  // {
+  //   route: "/profile",
+  //   icon: faUserCircle,
+  //   label: "Profile",
+  // },
 ];
 
 const Navigation = (props) => {
@@ -47,10 +53,15 @@ const Navigation = (props) => {
               </NavLink>
             </NavItem>
             <NavItem>
+              <NavLink to="/suggest" className="nav-link">
+                Suggest
+              </NavLink>
+            </NavItem>
+            {/* <NavItem>
               <NavLink to="/profile" className="nav-link">
                 Profile
               </NavLink>
-            </NavItem>
+            </NavItem> */}
           </Nav>
         </div>
       </nav>

@@ -57,3 +57,9 @@ h3 {
 #album-cover {
   margin: 10px;
 }
+
+/****** AUTH / Profile ******/
+
+.user-login-box {
+  padding: 20px;
+}

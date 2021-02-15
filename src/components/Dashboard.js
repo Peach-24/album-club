@@ -1,5 +1,6 @@
 import React from "react";
 import "../App.css";
+// import firebase from "firebase";
 
 export default function Dashboard() {
   return (

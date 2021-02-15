@@ -1,9 +1,9 @@
 import React from "react";
 
-export default function Schedule() {
+export default function Suggest() {
   return (
     <div>
-      <h4>Schedule</h4>
+      <h3>Suggest Screen</h3>
     </div>
   );
 }
