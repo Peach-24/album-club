@@ -47,6 +47,9 @@ export default function Dashboard() {
                 Album: <strong>{albums[0].album_name}</strong>
               </p>
               <p>Listening dates: ...</p>
+              <p>
+                Nominated by: <strong>{albums[0].author}</strong>
+              </p>
             </div>
             <button id="write-review-button">Write a review... ✍️</button>
           </div>
