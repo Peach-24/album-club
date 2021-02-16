@@ -99,6 +99,8 @@ h3 {
 #error-msg-text {
   margin: 1rem;
   color: #fff;
+  font-family: monospace;
+  font-size: 15px;
 }
 
 /****** Suggest ******/
