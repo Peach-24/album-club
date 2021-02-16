@@ -5,6 +5,7 @@ import "../App.css";
 
 export default function Schedule() {
   const [albums, setAlbums] = useState([]);
+  const [loaded, setLoaded] = useState(false);
 
   const fetchAlbums = () => {
     const db = firebase.firestore();
@@ -16,6 +17,7 @@ export default function Schedule() {
           albumsList.push(doc.data());
         });
         setAlbums(albumsList);
+        setLoaded(true);
       });
   };
 
@@ -33,16 +35,20 @@ export default function Schedule() {
         </button> */}
       </div>
       <div id="schedule-list">
-        <ol>
-          {albums.map((album) => {
-            return (
-              <li key={album.album_name} id="schedule-list-item">
-                <h5>{album.album_name}</h5>
-                <p>By {album.artist_name}</p>
-              </li>
-            );
-          })}
-        </ol>
+        {loaded ? (
+          <ol>
+            {albums.map((album) => {
+              return (
+                <li key={album.album_name} id="schedule-list-item">
+                  <h5>{album.album_name}</h5>
+                  <p>By {album.artist_name}</p>
+                </li>
+              );
+            })}
+          </ol>
+        ) : (
+          <p>Loading...</p>
+        )}
       </div>
     </div>
   );
