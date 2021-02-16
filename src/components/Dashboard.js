@@ -32,11 +32,7 @@ export default function Dashboard() {
           <div>
             <h4>Current Album</h4>
             <a href={albums[0].spotify_link}>
-              <img
-                id="album-cover"
-                alt="placeholder"
-                src="https://via.placeholder.com/175"
-              />
+              <img id="album-cover" alt="placeholder" src={albums[0].artwork} />
             </a>
           </div>
           <a href={albums[0].spotify_link}>

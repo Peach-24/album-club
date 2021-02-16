@@ -52,6 +52,8 @@ h3 {
 
 #album-cover {
   margin: 10px;
+  width: 50%;
+  height: auto;
 }
 
 /****** Password ******/

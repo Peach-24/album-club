@@ -3,31 +3,40 @@ import "../App.css";
 import firebase from "firebase";
 import "firebase/firebase-firestore";
 
+import * as api from "../api";
+
 export default function Suggest() {
   const [artist, setArtist] = useState("");
   const [album, setAlbum] = useState("");
   const [spotifyLink, setSpotifyLink] = useState("");
   const [name, setName] = useState("");
   const [errorMsg, setErrorMsg] = useState("");
+  const [submitting, setSubmitting] = useState(false);
 
   const handleSubmit = () => {
     if (artist !== "" && album !== "" && spotifyLink !== "" && name !== "") {
+      setSubmitting(true);
       const db = firebase.firestore();
-      db.collection("submissions")
-        .doc(album)
-        .set({
-          artist_name: artist,
-          album_name: album,
-          spotify_link: spotifyLink,
-          author: name,
-        })
-        .then(() => {
-          console.log("Successfully submitted.");
-          setErrorMsg("Success!");
-        })
-        .catch((err) => {
-          console.log("Error:", err);
-        });
+
+      api.fetchArtworkURL(spotifyLink).then((link) => {
+        db.collection("submissions")
+          .doc(album)
+          .set({
+            artist_name: artist,
+            album_name: album,
+            spotify_link: spotifyLink,
+            author: name,
+            artwork: link,
+          })
+          .then(() => {
+            console.log("Successfully submitted.");
+            setErrorMsg("Success!");
+            setSubmitting(false);
+          })
+          .catch((err) => {
+            console.log("Error:", err);
+          });
+      });
     } else {
       setErrorMsg("All fields must be filled in.");
     }
@@ -70,9 +79,16 @@ export default function Suggest() {
             setName(event.target.value);
           }}
         ></input>
-        <button id="suggest-submit-button" onClick={() => handleSubmit()}>
-          Submit
-        </button>
+        {submitting ? (
+          <button id="suggest-submit-button" disabled>
+            Hold on...
+          </button>
+        ) : (
+          <button id="suggest-submit-button" onClick={() => handleSubmit()}>
+            Submit
+          </button>
+        )}
+
         {errorMsg.length > 0 ? (
           <p id="errorMsg">{errorMsg}</p>
         ) : (
