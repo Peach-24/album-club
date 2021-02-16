@@ -25,7 +25,7 @@ export default function Login({ signIn }) {
             if (password === "sheffhampton") {
               signIn(email, password);
             } else {
-              setErrorMsg("Wrong password.");
+              setErrorMsg("wrong password...");
             }
           }}
         >

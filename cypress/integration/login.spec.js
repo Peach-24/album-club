@@ -1,19 +1,3 @@
-/// <reference types="cypress" />
-
-// context("Actions", () => {
-//   //   beforeEach(() => {
-//   //     cy.visit("https://localhost:3000");
-//   //   });
-
-//   it(".type() - type into a DOM element - password login", () => {
-//     // https://on.cypress.io/type
-//     cy.visit("https://localhost:3000");
-//     cy.get("#password-login")
-//       .type("sheffhampton")
-//       .should("have.value", "sheffhampton");
-//   });
-// });
-
 describe("Login page on load", () => {
   it("has all of the elements", () => {
     cy.visit("http://localhost:3000");
@@ -34,7 +18,7 @@ describe("Login page on load", () => {
     cy.visit("http://localhost:3000");
     cy.get("#password-login").type("wrongpassword");
     cy.get("#login-button").click();
-    cy.get("#error-msg-text").should("have.value", "Wrong password.");
+    cy.get("#error-msg-text").contains("wrong password...");
   });
   it("Clicking button with correct password navigates to a new url", () => {
     cy.visit("http://localhost:3000");

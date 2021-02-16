@@ -96,6 +96,11 @@ h3 {
   border: 1px solid;
 }
 
+#error-msg-text {
+  margin: 1rem;
+  color: #fff;
+}
+
 /****** Suggest ******/
 #suggest-container {
   background-color: rgba(0, 0, 255, 0.288);
