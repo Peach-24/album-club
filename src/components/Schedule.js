@@ -21,16 +21,16 @@ export default function Schedule() {
 
   useEffect(() => {
     fetchAlbums();
-  }, [albums]);
+  });
 
   return (
     <div id="schedule-container">
       <div id="schedule-box">
         <h4>Schedule</h4>
-        <button onClick={() => fetchAlbums()}>Fetch albums</button>
+        {/* <button onClick={() => fetchAlbums()}>Fetch albums</button>
         <button onClick={() => console.log(albums)}>
           View albums in state
-        </button>
+        </button> */}
       </div>
       <div id="schedule-list">
         <ol>

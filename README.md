@@ -20,3 +20,4 @@ I'm creating a social review platform for groups of friends to nominate albums t
 - React
 - Firebase, Auth & Firestore
 - React Router
+- Cypress

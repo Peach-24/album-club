@@ -23,7 +23,7 @@ export default function Dashboard() {
 
   useEffect(() => {
     fetchAlbums();
-  }, [albums]);
+  });
 
   return (
     <div id="current-album-container">
@@ -52,7 +52,7 @@ export default function Dashboard() {
               </p>
               <p>Listening dates: ...</p>
             </div>
-            <button>Write a review... ✍️</button>
+            <button id="write-review-button">Write a review... ✍️</button>
           </div>
         </>
       ) : (
