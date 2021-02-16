@@ -8,7 +8,7 @@ export default function Suggest() {
   const [album, setAlbum] = useState("");
   const [spotifyLink, setSpotifyLink] = useState("");
   const [name, setName] = useState("");
-  const [message, setMessage] = useState("");
+  const [errorMsg, setErrorMsg] = useState("");
 
   const handleSubmit = () => {
     if (artist !== "" && album !== "" && spotifyLink !== "" && name !== "") {
@@ -23,13 +23,13 @@ export default function Suggest() {
         })
         .then(() => {
           console.log("Successfully submitted.");
-          setMessage("Success!");
+          setErrorMsg("Success!");
         })
         .catch((err) => {
           console.log("Error:", err);
         });
     } else {
-      setMessage("All fields must be filled in.");
+      setErrorMsg("All fields must be filled in.");
     }
   };
 
@@ -40,6 +40,7 @@ export default function Suggest() {
       <div id="submit-album-form">
         <input
           className="suggest-input"
+          id="artist-field"
           placeholder="Artist"
           onChange={(event) => {
             setArtist(event.target.value);
@@ -47,6 +48,7 @@ export default function Suggest() {
         ></input>
         <input
           className="suggest-input"
+          id="album-field"
           placeholder="Album"
           onChange={(event) => {
             setAlbum(event.target.value);
@@ -54,6 +56,7 @@ export default function Suggest() {
         ></input>
         <input
           className="suggest-input"
+          id="spotify-link-field"
           placeholder="Spotify link"
           onChange={(event) => {
             setSpotifyLink(event.target.value);
@@ -61,6 +64,7 @@ export default function Suggest() {
         ></input>
         <input
           className="suggest-input"
+          id="author-field"
           placeholder="Your name"
           onChange={(event) => {
             setName(event.target.value);
@@ -69,7 +73,11 @@ export default function Suggest() {
         <button id="suggest-submit-button" onClick={() => handleSubmit()}>
           Submit
         </button>
-        {message.length > 0 ? <p>{message}</p> : <p></p>}
+        {errorMsg.length > 0 ? (
+          <p id="errorMsg">{errorMsg}</p>
+        ) : (
+          <p id="errorMsg"></p>
+        )}
       </div>
     </div>
   );

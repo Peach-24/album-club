@@ -40,7 +40,7 @@ export default function Dashboard() {
             </a>
           </div>
           <a href={albums[0].spotify_link}>
-            <button id="listen-spotify-button">Listen to on Spotify</button>
+            <button id="listen-spotify-button">Listen on Spotify</button>
           </a>
           <div>
             <div id="current-album-info">
