@@ -3,6 +3,13 @@ import "../App.css";
 import firebase from "firebase";
 import "firebase/firebase-firestore";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import {
+//   fa-spotify
+// } from "@fortawesome/free-solid-svg-icons";
+
+import Header from "./Header";
+
 export default function Dashboard() {
   const [albums, setAlbums] = useState([]);
   const [loaded, setLoaded] = useState(false);
@@ -26,37 +33,45 @@ export default function Dashboard() {
   });
 
   return (
-    <div id="current-album-container">
-      {loaded ? (
-        <>
-          <div>
-            <h4>Current Album</h4>
-            <a href={albums[0].spotify_link}>
-              <img id="album-cover" alt="placeholder" src={albums[0].artwork} />
-            </a>
-          </div>
-          <a href={albums[0].spotify_link}>
-            <button id="listen-spotify-button">Listen on Spotify</button>
-          </a>
-          <div>
-            <div id="current-album-info">
-              <p>
-                Artist: <strong>{albums[0].artist_name}</strong>
-              </p>
-              <p>
-                Album: <strong>{albums[0].album_name}</strong>
-              </p>
-              <p>Listening dates: ...</p>
-              <p>
-                Nominated by: <strong>{albums[0].author}</strong>
-              </p>
+    <>
+      <Header title="Current album" />
+      <div id="current-album-container">
+        {loaded ? (
+          <>
+            <div>
+              <a href={albums[0].spotify_link}>
+                <img
+                  id="album-cover"
+                  alt="placeholder"
+                  src={albums[0].artwork}
+                />
+              </a>
             </div>
-            <button id="write-review-button">Write a review... ✍️</button>
+            <a href={albums[0].spotify_link}>
+              <button id="listen-spotify-button">Listen on Spotify</button>
+            </a>
+            <div>
+              <div id="current-album-info">
+                <p>
+                  Artist: <strong>{albums[0].artist_name}</strong>
+                </p>
+                <p>
+                  Album: <strong>{albums[0].album_name}</strong>
+                </p>
+                <p>Listening dates: ...</p>
+                <p>
+                  Nominated by: <strong>{albums[0].author}</strong>
+                </p>
+              </div>
+              <button id="write-review-button">Write a review... ✍️</button>
+            </div>
+          </>
+        ) : (
+          <div id="loading-dashboard">
+            <p id="loading-list-text">Loading...</p>
           </div>
-        </>
-      ) : (
-        <p>Loading</p>
-      )}
-    </div>
+        )}
+      </div>
+    </>
   );
 }
