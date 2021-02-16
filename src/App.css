@@ -150,12 +150,36 @@ h3 {
   background-color: rgba(255, 255, 255, 0.164);
   width: 100%;
   margin: auto;
-  margin-left: 0px;
+  padding: 0px;
 }
 
 #schedule-list-item {
   margin-top: 1rem;
-  background-color: #fff;
+  background-color: rgb(255, 255, 255);
   list-style: none;
-  margin-left: 0px;
+  padding: 10px;
+  display: flex;
+  width: 80%;
+  margin: 30px auto;
+}
+
+#schedule-list-album-cover {
+  width: 75px;
+  height: 75px;
+  box-shadow: 1px 1px 3px rgba(169, 169, 169, 0.61);
+}
+
+#schedule-list-album-info {
+  padding-left: 10px;
+  align-self: center;
+  text-align: center;
+}
+
+#schedule-album-name {
+  font-size: 15px;
+  font-style: oblique;
+}
+#schedule-artist-name {
+  font-size: 13px;
+  font-family: Arial, Helvetica, sans-serif;
 }

@@ -34,14 +34,17 @@ export default function Schedule() {
           View albums in state
         </button> */}
       </div>
-      <div id="schedule-list">
+      <div>
         {loaded ? (
-          <ol>
+          <ol id="schedule-list">
             {albums.map((album) => {
               return (
                 <li key={album.album_name} id="schedule-list-item">
-                  <h5>{album.album_name}</h5>
-                  <p>By {album.artist_name}</p>
+                  <img id="schedule-list-album-cover" src={album.artwork} />
+                  <div id="schedule-list-album-info">
+                    <h5 id="schedule-album-name">{album.album_name}</h5>
+                    <p id="schedule-artist-name">By {album.artist_name}</p>
+                  </div>
                 </li>
               );
             })}
