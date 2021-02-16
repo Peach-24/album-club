@@ -49,17 +49,17 @@ const Navigation = (props) => {
           <Nav className="ml-auto">
             <NavItem>
               <NavLink to="/home" className="nav-link">
-                Dashboard
-              </NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink to="/schedule" className="nav-link">
-                Schedule
+                Home
               </NavLink>
             </NavItem>
             <NavItem>
               <NavLink to="/suggest" className="nav-link">
                 Suggest
+              </NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink to="/schedule" className="nav-link">
+                Schedule
               </NavLink>
             </NavItem>
           </Nav>
