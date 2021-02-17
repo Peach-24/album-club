@@ -63,15 +63,18 @@ export default function WriteReview({ album }) {
           ></textarea>
         </label>
         <label htmlFor="score">
-          <input
-            id="review-score"
-            type="number"
-            min="1"
-            max="10"
-            onChange={(event) => {
-              setScore(event.target.value);
-            }}
-          />
+          <div id="score-container">
+            <p>Score ?/10</p>
+            <input
+              id="review-score"
+              type="number"
+              min="1"
+              max="10"
+              onChange={(event) => {
+                setScore(event.target.value);
+              }}
+            />
+          </div>
         </label>
         {postReviewClicked ? (
           <button id="post-review-button" disabled>

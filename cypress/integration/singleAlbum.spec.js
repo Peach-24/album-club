@@ -16,8 +16,8 @@ describe("singleAlbum screen", () => {
     cy.get("#album-reviews-box");
     cy.get("#album-reviews-list");
     cy.get("#album-reviews-list-item");
-    cy.get("#review-body");
-    cy.get("#review-author");
-    cy.get("#review-score");
+    cy.get("#album-review-body");
+    cy.get("#album-review-author");
+    cy.get("#album-review-score");
   });
 });
