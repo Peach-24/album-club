@@ -20,6 +20,11 @@ describe("Reviews screen", () => {
     cy.get("#reviews-box");
     cy.get("#reviews-list");
     cy.get("#reviews-list-item");
+    cy.get("#header-text").contains("Previous albums");
+  });
+  it("navigates to the single review page when an album cover is clicked", () => {
+    cy.get("#reviews-list-item").click();
+    cy.get("#header-text").contains("Previous albums").should("not.exist");
   });
 });
 
