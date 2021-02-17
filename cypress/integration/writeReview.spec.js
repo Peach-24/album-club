@@ -9,6 +9,21 @@ describe("Write review screen", () => {
     cy.get("button").contains("Write a review").click();
     cy.get("#write-review-container");
     cy.get("textarea");
+    cy.get("#write-review-heading");
+    cy.get("#review-score");
     cy.get("button").contains("Post review");
+  });
+  it("Can enter text in the review form", () => {
+    cy.get("#your-review-name")
+      .type("test name")
+      .should("have.value", "test name");
+    cy.get("#your-review-body")
+      .type("test review")
+      .should("have.value", "test review");
+    cy.get("#review-score")
+      .type("t")
+      .should("have.value", "")
+      .type("6")
+      .should("have.value", "6");
   });
 });

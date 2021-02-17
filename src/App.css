@@ -47,9 +47,9 @@ h3 {
 #current-album-container {
   background-color: rgba(16, 131, 93, 0.575);
   width: 100%;
-  height: 100vh;
+  height: 100%;
   margin: auto;
-  padding: 3rem 1rem;
+  padding: 1rem 1rem 4rem;
   text-align: center;
 }
 
@@ -76,6 +76,57 @@ h3 {
 }
 
 #write-review-button {
+  margin: 0;
+}
+
+#write-review-button-text {
+  margin: 0px;
+  padding: 5px;
+}
+
+/******** Write review component ********/
+
+#write-review-container {
+  margin: 1rem auto;
+  width: 90%;
+}
+
+#write-review-box {
+  background-color: rgb(41, 41, 40);
+  padding: 1rem;
+  width: 100%;
+  margin: auto;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+}
+
+#write-review-heading {
+  color: #fff;
+  margin-bottom: 10px;
+}
+
+#your-review-name {
+  width: 100%;
+}
+
+#your-review-body {
+  width: 100%;
+  height: 200px;
+}
+
+#review-score {
+  width: 50px;
+  font-size: 14px;
+}
+
+#post-review-button {
+  width: 40%;
+  align-self: center;
+}
+
+#post-message {
+  color: #fff;
 }
 
 /****** Password ******/
@@ -131,7 +182,7 @@ h3 {
 #suggest-container {
   background-color: rgba(109, 26, 161, 0.432);
   height: 100vh;
-  padding: 3rem 1rem;
+  padding: 1rem;
   text-align: center;
 }
 
@@ -176,7 +227,7 @@ h3 {
   height: 100vh;
   text-align: center;
   margin: 0 auto;
-  padding-top: 3rem;
+  /* padding-top: 3rem; */
 }
 
 #schedule-box {

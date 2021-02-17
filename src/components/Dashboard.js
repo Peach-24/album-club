@@ -9,10 +9,12 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // } from "@fortawesome/free-solid-svg-icons";
 
 import Header from "./Header";
+import WriteReview from "./WriteReview";
 
 export default function Dashboard() {
   const [albums, setAlbums] = useState([]);
   const [loaded, setLoaded] = useState(false);
+  const [clickedReview, setClickedReview] = useState(false);
 
   const fetchAlbums = () => {
     const db = firebase.firestore();
@@ -63,7 +65,24 @@ export default function Dashboard() {
                   Nominated by: <strong>{albums[0].author}</strong>
                 </p>
               </div>
-              <button id="write-review-button">Write a review... ✍️</button>
+              <button
+                id="write-review-button"
+                onClick={() => {
+                  console.log("Trying to review...");
+                  if (!clickedReview) {
+                    setClickedReview(true);
+                  } else {
+                    setClickedReview(false);
+                  }
+                }}
+              >
+                {!clickedReview ? (
+                  <p id="write-review-button-text">Write a review... ✍️</p>
+                ) : (
+                  <p id="write-review-button-text">Hide review form</p>
+                )}
+              </button>
+              {clickedReview ? <WriteReview album={albums[0]} /> : <p></p>}
             </div>
           </>
         ) : (
