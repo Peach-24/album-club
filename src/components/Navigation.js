@@ -7,6 +7,8 @@ import {
   faHome,
   // faUserCircle,
   faPlus,
+  faMusic,
+  faPlayCircle,
 } from "@fortawesome/free-solid-svg-icons";
 
 import "../App.css";
@@ -14,8 +16,13 @@ import "../App.css";
 const tabs = [
   {
     route: "/home",
-    icon: faHome,
+    icon: faPlayCircle,
     label: "Home",
+  },
+  {
+    route: "/reviews",
+    icon: faMusic,
+    label: "Reviews",
   },
   {
     route: "/suggest",
@@ -27,11 +34,6 @@ const tabs = [
     icon: faSearch,
     label: "Schedule",
   },
-  // {
-  //   route: "/profile",
-  //   icon: faUserCircle,
-  //   label: "Profile",
-  // },
 ];
 
 const Navigation = (props) => {
@@ -43,13 +45,18 @@ const Navigation = (props) => {
         role="navigation"
       >
         <div className="container-fluid">
-          {/* <a className="navbar-brand" href="/home">
-            🎶
-          </a> */}
+          <a className="navbar-brand" href="/home">
+            <FontAwesomeIcon size="lg" icon={faHome} />
+          </a>
           <Nav className="ml-auto">
             <NavItem>
               <NavLink to="/home" className="nav-link">
                 Home
+              </NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink to="/reviews" className="nav-link">
+                Reviews
               </NavLink>
             </NavItem>
             <NavItem>

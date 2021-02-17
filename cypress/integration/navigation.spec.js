@@ -16,6 +16,7 @@ describe("Navigation bars", () => {
     cy.get("li").contains("Home").should("have.attr", "href", "/home");
     cy.get("li").contains("Suggest").should("have.attr", "href", "/suggest");
     cy.get("li").contains("Schedule").should("have.attr", "href", "/schedule");
+    cy.get("li").contains("Reviews").should("have.attr", "href", "/reviews");
   });
   it("(Laptop screen) - Navigates to appropriate endpoints when clicking on top nav", () => {
     cy.viewport("macbook-13");
@@ -26,6 +27,8 @@ describe("Navigation bars", () => {
     cy.url().should("include", "/home");
     cy.get("li").contains("Suggest").click();
     cy.url().should("include", "/suggest");
+    cy.get("li").contains("Reviews").click();
+    cy.url().should("include", "/reviews");
   });
   it("(Mobile screen) - Has bottom tab navigator with links to correct endpoints", () => {
     cy.viewport("iphone-6");
@@ -33,6 +36,7 @@ describe("Navigation bars", () => {
     cy.get("nav").contains("Home").should("have.attr", "href", "/home");
     cy.get("nav").contains("Suggest").should("have.attr", "href", "/suggest");
     cy.get("nav").contains("Schedule").should("have.attr", "href", "/schedule");
+    cy.get("nav").contains("Reviews").should("have.attr", "href", "/reviews");
   });
   it("(Mobile screen) - tab navigator links take user to correct endpoints", () => {
     cy.viewport("iphone-6");
@@ -43,5 +47,7 @@ describe("Navigation bars", () => {
     cy.url().should("include", "/schedule");
     cy.get("a").contains("Suggest").click();
     cy.url().should("include", "/suggest");
+    cy.get("a").contains("Reviews").click();
+    cy.url().should("include", "/reviews");
   });
 });
