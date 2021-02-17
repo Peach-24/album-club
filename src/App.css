@@ -187,6 +187,7 @@ h3 {
 }
 #reviews-box {
   margin: 0;
+  text-align: center;
 }
 
 #reviews-list {
@@ -194,6 +195,7 @@ h3 {
   padding-left: 0;
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
 }
 
 #reviews-list-item {
