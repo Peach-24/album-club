@@ -11,6 +11,7 @@ import DashboardScreen from "./components/Dashboard";
 import ScheduleScreen from "./components/Schedule";
 import SuggestScreen from "./components/Suggest";
 import ReviewsScreen from "./components/Reviews";
+import SingleAlbumScreen from "./components/SingleAlbum";
 import Login from "./components/auth/Login";
 
 export default function App() {
@@ -42,6 +43,7 @@ export default function App() {
             <Route exact path="/">
               <Redirect to="/home" />
             </Route>
+            <Route path="/reviews/:album_name" component={SingleAlbumScreen} />
             <Route path="/reviews" component={ReviewsScreen} />
             <Route path="/suggest" component={SuggestScreen} />
             <Route path="/schedule" component={ScheduleScreen} />

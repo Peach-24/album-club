@@ -21,7 +21,11 @@ export default function WriteReview({ album }) {
     const db = firebase.firestore();
     db.collection("reviews")
       .doc(album.album_name)
-      .set({ artwork: album.artwork })
+      .set({
+        artwork: album.artwork,
+        album: album.album_name,
+        artist: album.artist_name,
+      })
       .then(() => {
         db.collection("reviews")
           .doc(album.album_name)

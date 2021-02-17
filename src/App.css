@@ -191,10 +191,20 @@ h3 {
 
 #reviews-list {
   margin: 0;
+  background-color: rgba(233, 150, 122, 0.301);
+  padding-left: 0;
 }
 
 #reviews-list-item {
   margin: 0;
+  list-style-type: none;
+  padding: 1rem;
+}
+
+#reviews-list-album-cover {
+  width: 30%;
+  max-width: 300px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.863);
 }
 
 /****** Suggest ******/

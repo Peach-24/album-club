@@ -21,3 +21,15 @@ I'm creating a social review platform for groups of friends to nominate albums t
 - Firebase, Auth & Firestore
 - React Router
 - Cypress
+
+### NOTE
+
+Whilst in development, I'm having to use a workaround for CORS, to enable me to make use of the Spotify API whilst on localhost:3000.
+
+To make the suggest functionality work, you'll need to visit https://cors-anywhere.herokuapp.com/ and get temporary access.
+
+---
+
+password : **sheffhampton**
+
+---
