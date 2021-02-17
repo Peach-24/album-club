@@ -22,3 +22,8 @@ describe("Schedule screen", () => {
     cy.get("#schedule-list-item");
   });
 });
+
+/* 
+Has certain number of li in ol
+cy.get('.left-nav>.nav').children().should('have.length', 8)
+*/

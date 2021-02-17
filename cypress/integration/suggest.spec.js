@@ -44,11 +44,15 @@ describe("Suggest screen", () => {
     cy.get("#suggest-submit-button").click();
     cy.get("#errorMsg").contains("All fields must be filled in.");
   });
-  it("shows an success message if all fields are filled in + submit is clicked ", () => {
-    cy.get("#spotify-link-field").type(
-      "https://open.spotify.com/album/3WFTGIO6E3Xh4paEOBY9OU?si=67khku-wSNanpyjt55DQUw"
-    );
-    cy.get("#suggest-submit-button").click();
-    cy.get("#errorMsg").contains("Success!");
-  });
+  // it("shows an success message if all fields are filled in + submit is clicked ", () => {
+  //   cy.get("#spotify-link-field").type(
+  //     "https://open.spotify.com/album/3WFTGIO6E3Xh4paEOBY9OU?si=67khku-wSNanpyjt55DQUw"
+  //   );
+  //   cy.get("#suggest-submit-button").click();
+  //   cy.wait(10000);
+  //   cy.get("#errorMsg").contains("Success!");
+  // });
+  // it("successfully adds the suggested album to the queued list on the Schedule page ", () => {
+  //   cy.visit("/suggest");
+  // });
 });

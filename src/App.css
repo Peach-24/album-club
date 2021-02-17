@@ -30,7 +30,7 @@ h3 {
   background-color: #0f0e0ef8;
   text-align: center;
   padding: 10px;
-  position: fixed;
+  /* position: fixed; */
   width: 100%;
 }
 
