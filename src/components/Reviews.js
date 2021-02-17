@@ -43,7 +43,7 @@ export default function Reviews() {
                     <Link to={`/reviews/${album.album}`}>
                       <img
                         id="reviews-list-album-cover"
-                        src={album.artwork || "https://via.placeholder.com/150"}
+                        src={album.artwork || "https://via.placeholder.com/300"}
                         alt="album cover"
                       />
                     </Link>
