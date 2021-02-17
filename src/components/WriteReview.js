@@ -21,14 +21,19 @@ export default function WriteReview({ album }) {
     const db = firebase.firestore();
     db.collection("reviews")
       .doc(album.album_name)
-      .collection("submissions")
-      .doc(reviewObj.author)
-      .set(reviewObj)
+      .set({ artwork: album.artwork })
       .then(() => {
-        console.log("added!");
-        setPostMessage("Review added!");
-      })
-      .catch((err) => console.log(err));
+        db.collection("reviews")
+          .doc(album.album_name)
+          .collection("submissions")
+          .doc(reviewObj.author)
+          .set(reviewObj)
+          .then(() => {
+            console.log("added!");
+            setPostMessage("Review added!");
+          })
+          .catch((err) => console.log(err));
+      });
   };
 
   return (

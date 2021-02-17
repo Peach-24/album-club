@@ -47,7 +47,7 @@ h3 {
 #current-album-container {
   background-color: rgba(16, 131, 93, 0.575);
   width: 100%;
-  height: 100%;
+  height: 100vh;
   margin: auto;
   padding: 1rem 1rem 4rem;
   text-align: center;
@@ -176,6 +176,25 @@ h3 {
   color: #fff;
   font-family: monospace;
   font-size: 15px;
+}
+
+/****** Reviews ******/
+#reviews-container {
+  background-color: rgba(139, 0, 0, 0.836);
+  width: 100%;
+  height: 100vh;
+  padding: 0;
+}
+#reviews-box {
+  margin: 0;
+}
+
+#reviews-list {
+  margin: 0;
+}
+
+#reviews-list-item {
+  margin: 0;
 }
 
 /****** Suggest ******/

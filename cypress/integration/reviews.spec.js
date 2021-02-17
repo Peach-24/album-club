@@ -9,7 +9,7 @@ describe("Reviews screen", () => {
     cy.get("#error-msg-text");
   });
   it("Lands on reviews after logging in", () => {
-    cy.visit("/schedule");
+    cy.visit("/reviews");
     cy.get("#password-login").type("sheffhampton");
     cy.get("#login-button").click();
     cy.url().should("include", "/reviews");
