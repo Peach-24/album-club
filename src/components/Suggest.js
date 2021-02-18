@@ -20,7 +20,7 @@ export default function Suggest() {
       const db = firebase.firestore();
 
       api.fetchArtworkURL(spotifyLink).then((link) => {
-        db.collection("submissions")
+        db.collection("suggested_albums")
           .doc(album)
           .set({
             artist_name: artist,

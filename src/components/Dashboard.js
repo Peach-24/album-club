@@ -18,7 +18,7 @@ export default function Dashboard() {
 
   const fetchAlbums = () => {
     const db = firebase.firestore();
-    db.collection("submissions")
+    db.collection("suggested_albums")
       .get()
       .then((querySnapshot) => {
         let albumsList = [];
@@ -30,6 +30,20 @@ export default function Dashboard() {
       });
   };
 
+  const changeCurrentAlbum = () => {
+    console.log("changing album!");
+    const db = firebase.firestore();
+    db.collection("suggested_albums")
+      .doc(albums[0].album_name)
+      .delete()
+      .then(() => {
+        console.log("Document successfully deleted!");
+      })
+      .catch((error) => {
+        console.error("Error removing document: ", error);
+      });
+  };
+
   useEffect(() => {
     fetchAlbums();
   });
@@ -38,6 +52,9 @@ export default function Dashboard() {
     <>
       <Header title="Current album" />
       <div id="current-album-container">
+        <button onClick={() => changeCurrentAlbum()}>
+          Change current album
+        </button>
         {loaded ? (
           <>
             <div>
