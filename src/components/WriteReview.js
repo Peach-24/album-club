@@ -45,13 +45,23 @@ export default function WriteReview({ album }) {
       <div id="write-review-box">
         <h5 id="write-review-heading">What did you think?</h5>
         <label htmlFor="reviewer-name">
-          <input
-            placeholder="Your name"
+          <select
             id="your-review-name"
             onChange={(event) => {
               setName(event.target.value);
             }}
-          ></input>
+          >
+            <option value="" disabled selected hidden>
+              your name
+            </option>
+            <option value="Shreeve">Shreeve</option>
+            <option value="Will">Will</option>
+            <option value="Kieran">Kieran</option>
+            <option value="Sam">Sam</option>
+            <option value="Ben">Ben</option>
+            <option value="Peach">Peach</option>
+            <option value="Lewis">Lewis</option>
+          </select>
         </label>
         <label htmlFor="review-body">
           <textarea

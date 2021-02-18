@@ -49,38 +49,57 @@ export default function Suggest() {
       <div id="suggest-container">
         <div id="submit-album-form">
           <p>Fill in the details of the album you want to put forward.</p>
-          <input
-            className="suggest-input"
-            id="artist-field"
-            placeholder="Artist"
-            onChange={(event) => {
-              setArtist(event.target.value);
-            }}
-          ></input>
-          <input
-            className="suggest-input"
-            id="album-field"
-            placeholder="Album"
-            onChange={(event) => {
-              setAlbum(event.target.value);
-            }}
-          ></input>
-          <input
-            className="suggest-input"
-            id="spotify-link-field"
-            placeholder="Spotify link"
-            onChange={(event) => {
-              setSpotifyLink(event.target.value);
-            }}
-          ></input>
-          <input
-            className="suggest-input"
-            id="author-field"
-            placeholder="Your name"
-            onChange={(event) => {
-              setName(event.target.value);
-            }}
-          ></input>
+          <label htmlFor="artist name">
+            <input
+              className="suggest-input"
+              id="artist-field"
+              placeholder="Artist"
+              onChange={(event) => {
+                setArtist(event.target.value);
+              }}
+            ></input>
+          </label>
+          <label htmlFor="album name">
+            <input
+              className="suggest-input"
+              id="album-field"
+              placeholder="Album"
+              onChange={(event) => {
+                setAlbum(event.target.value);
+              }}
+            ></input>
+          </label>
+          <label htmlFor="spotify link">
+            <input
+              className="suggest-input"
+              id="spotify-link-field"
+              placeholder="Spotify link"
+              onChange={(event) => {
+                setSpotifyLink(event.target.value);
+              }}
+            ></input>
+          </label>
+          <label htmlFor="your name">
+            <select
+              id="author-field"
+              className="suggest-input"
+              onChange={(event) => {
+                setName(event.target.value);
+              }}
+            >
+              <option value="" disabled selected hidden>
+                your name
+              </option>
+              <option value="Shreeve">Shreeve</option>
+              <option value="Will">Will</option>
+              <option value="Kieran">Kieran</option>
+              <option value="Sam">Sam</option>
+              <option value="Ben">Ben</option>
+              <option value="Peach">Peach</option>
+              <option value="Lewis">Lewis</option>
+            </select>
+          </label>
+
           {submitting ? (
             <button id="suggest-submit-button" disabled>
               Hold on...
