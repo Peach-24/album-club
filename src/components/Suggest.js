@@ -88,9 +88,7 @@ export default function Suggest() {
                 setName(event.target.value);
               }}
             >
-              <option value="" disabled selected hidden>
-                your name
-              </option>
+              <option value="">Your name</option>
               <option value="Shreeve">Shreeve</option>
               <option value="Will">Will</option>
               <option value="Kieran">Kieran</option>

@@ -29,7 +29,7 @@ export default function Schedule() {
 
   useEffect(() => {
     fetchAlbums();
-  });
+  }, [albums]);
 
   return (
     <>

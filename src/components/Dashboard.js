@@ -19,7 +19,7 @@ export default function Dashboard() {
 
   useEffect(() => {
     fetchAlbums();
-  });
+  }, [currentAlbum]);
 
   const fetchAlbums = () => {
     const db = firebase.firestore();
@@ -105,7 +105,6 @@ export default function Dashboard() {
               <button
                 id="write-review-button"
                 onClick={() => {
-                  console.log("Trying to review...");
                   if (!clickedReview) {
                     setClickedReview(true);
                   } else {

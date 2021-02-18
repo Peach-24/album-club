@@ -11,7 +11,7 @@ export default function WriteReview({ album }) {
 
   const handlePost = () => {
     setPostReviewClicked(true);
-    let reviewObj = {
+    const reviewObj = {
       author: name,
       reviewBody,
       score,
@@ -19,25 +19,25 @@ export default function WriteReview({ album }) {
       artist: album.artist_name,
     };
     const db = firebase.firestore();
+
     db.collection("reviews")
       .doc(album.album_name)
       .set({
         artwork: album.artwork,
-        album: album.album_name,
         artist: album.artist_name,
       })
       .then(() => {
         db.collection("reviews")
           .doc(album.album_name)
           .collection("submissions")
-          .doc(reviewObj.author)
+          .doc(name)
           .set(reviewObj)
           .then(() => {
-            console.log("added!");
             setPostMessage("Review added!");
           })
           .catch((err) => console.log(err));
-      });
+      })
+      .catch((err) => console.log(err));
   };
 
   return (
@@ -51,9 +51,7 @@ export default function WriteReview({ album }) {
               setName(event.target.value);
             }}
           >
-            <option value="" disabled selected hidden>
-              your name
-            </option>
+            <option value="">Your name</option>
             <option value="Shreeve">Shreeve</option>
             <option value="Will">Will</option>
             <option value="Kieran">Kieran</option>

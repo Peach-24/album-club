@@ -28,7 +28,7 @@ export default function Reviews() {
 
   useEffect(() => {
     fetchReviewedAlbums();
-  });
+  }, [albums]);
 
   return (
     <>

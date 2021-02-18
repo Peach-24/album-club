@@ -37,7 +37,7 @@ export default function SingleAlbum(props) {
 
   useEffect(() => {
     fetchReviewsForAlbum(albumName);
-  });
+  }, [reviews]);
 
   return (
     <>
