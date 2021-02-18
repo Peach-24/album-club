@@ -21,6 +21,7 @@ describe("Suggest screen", () => {
     cy.get(".suggest-input");
     cy.get("#suggest-submit-button");
     cy.get("#errorMsg");
+    cy.get("select");
   });
   it("can type in the input fields", () => {
     cy.get("#artist-field")
@@ -37,7 +38,7 @@ describe("Suggest screen", () => {
         "have.value",
         "https://open.spotify.com/album/3WFTGIO6E3Xh4paEOBY9OU?si=67khku-wSNanpyjt55DQUw"
       );
-    cy.get("#author-field").type("Josh").should("have.value", "Josh");
+    cy.get("select").select("Will").should("have.value", "Will");
   });
   it("shows an error message if a field is empty + submit is clicked ", () => {
     cy.get("#spotify-link-field").clear();
