@@ -9,7 +9,6 @@ import WriteReview from "./WriteReview";
 import { secondsToDatePlusWeek, trimDateString } from "../utils/formatters";
 
 export default function Dashboard() {
-  // const [albums, setAlbums] = useState([]);
   const [currentAlbum, setCurrentAlbum] = useState({});
   const [cloneAlbum, setCloneAlbum] = useState({});
   const [startDate, setStartDate] = useState("");
@@ -18,32 +17,33 @@ export default function Dashboard() {
   const [clickedReview, setClickedReview] = useState(false);
 
   useEffect(() => {
-    fetchAlbums();
-  }, [currentAlbum]);
-
-  const fetchAlbums = () => {
+    let mounted = true;
     const db = firebase.firestore();
     db.collection("suggested_albums")
       .get()
       .then((querySnapshot) => {
-        let albumsList = [];
-        querySnapshot.forEach((doc) => {
-          albumsList.push(doc.data());
-        });
-        let inOrderAlbums = albumsList
-          .sort((album) => album.created_at)
-          .reverse();
-        setCurrentAlbum(inOrderAlbums[0]);
-        setCloneAlbum(JSON.parse(JSON.stringify(inOrderAlbums[0])));
-        setStartDate(inOrderAlbums[0].created_at.toDate().toString());
-        setEndDate(
-          secondsToDatePlusWeek(
-            JSON.parse(JSON.stringify(inOrderAlbums[0])).created_at.seconds
-          ).toString()
-        );
-        setLoaded(true);
+        if (mounted) {
+          let albumsList = [];
+          querySnapshot.forEach((doc) => {
+            albumsList.push(doc.data());
+          });
+          let inOrderAlbums = albumsList
+            .sort((album) => album.created_at)
+            .reverse();
+          setCurrentAlbum(inOrderAlbums[0]);
+          setCloneAlbum(JSON.parse(JSON.stringify(inOrderAlbums[0])));
+          setStartDate(inOrderAlbums[0].created_at.toDate().toString());
+          setEndDate(
+            secondsToDatePlusWeek(
+              JSON.parse(JSON.stringify(inOrderAlbums[0])).created_at.seconds
+            ).toString()
+          );
+          setLoaded(true);
+        }
       });
-  };
+
+    return () => (mounted = false);
+  }, [currentAlbum]);
 
   /**
    * Need to invoke changeCurrentAlbum when current date is older than endDate

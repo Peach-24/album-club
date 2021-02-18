@@ -11,23 +11,23 @@ export default function Reviews() {
   const [loaded, setLoaded] = useState(false);
   const [albums, setAlbums] = useState([]);
 
-  const fetchReviewedAlbums = () => {
+  useEffect(() => {
+    let mounted = true;
     const db = firebase.firestore();
     db.collection("reviews")
       .get()
       .then((querySnapshot) => {
-        let albumsList = [];
-        querySnapshot.forEach((doc) => {
-          albumsList.push(doc.data());
-        });
-        // console.log(albumsList);
-        setAlbums(albumsList);
-        setLoaded(true);
+        if (mounted) {
+          let albumsList = [];
+          querySnapshot.forEach((doc) => {
+            albumsList.push(doc.data());
+          });
+          // console.log(albumsList);
+          setAlbums(albumsList);
+          setLoaded(true);
+        }
       });
-  };
-
-  useEffect(() => {
-    fetchReviewedAlbums();
+    return () => (mounted = false);
   }, [albums]);
 
   return (

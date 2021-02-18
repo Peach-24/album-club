@@ -18,25 +18,25 @@ export default function SingleAlbum(props) {
     return (total / arr.length).toFixed(1);
   };
 
-  const fetchReviewsForAlbum = (albumName) => {
+  useEffect(() => {
+    let mounted = true;
     const db = firebase.firestore();
     db.collection("reviews")
       .doc(albumName)
       .collection("submissions")
       .get()
       .then((querySnapshot) => {
-        let reviewScores = [];
-        let reviewsList = [];
-        querySnapshot.forEach((doc) => {
-          reviewsList.push(doc.data());
-        });
-        setReviews(reviewsList);
-        setLoaded(true);
+        if (mounted) {
+          let reviewsList = [];
+          querySnapshot.forEach((doc) => {
+            reviewsList.push(doc.data());
+          });
+          setReviews(reviewsList);
+          setLoaded(true);
+        }
       });
-  };
 
-  useEffect(() => {
-    fetchReviewsForAlbum(albumName);
+    return () => (mounted = false);
   }, [reviews]);
 
   return (

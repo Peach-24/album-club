@@ -9,26 +9,26 @@ export default function Schedule() {
   const [albums, setAlbums] = useState([]);
   const [loaded, setLoaded] = useState(false);
 
-  const fetchAlbums = () => {
+  useEffect(() => {
+    let mounted = true;
     const db = firebase.firestore();
     db.collection("suggested_albums")
       .get()
       .then((querySnapshot) => {
-        let albumsList = [];
-        querySnapshot.forEach((doc) => {
-          albumsList.push(doc.data());
-        });
-        let inOrderAlbums = albumsList
-          .sort((album) => album.created_at)
-          .reverse();
-        inOrderAlbums.splice(0, 1);
-        setAlbums(inOrderAlbums);
-        setLoaded(true);
+        if (mounted) {
+          let albumsList = [];
+          querySnapshot.forEach((doc) => {
+            albumsList.push(doc.data());
+          });
+          let inOrderAlbums = albumsList
+            .sort((album) => album.created_at)
+            .reverse();
+          inOrderAlbums.splice(0, 1);
+          setAlbums(inOrderAlbums);
+          setLoaded(true);
+        }
       });
-  };
-
-  useEffect(() => {
-    fetchAlbums();
+    return () => (mounted = false);
   }, [albums]);
 
   return (
