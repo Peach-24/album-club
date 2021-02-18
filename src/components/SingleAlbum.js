@@ -5,18 +5,13 @@ import "firebase/firebase-firestore";
 
 import Header from "./Header";
 
+import { calculateAvgScore } from "../utils/formatters";
+
 export default function SingleAlbum(props) {
   const [loaded, setLoaded] = useState(false);
-  const [albumName] = useState(props.match.params.album_name);
   const [reviews, setReviews] = useState([]);
 
-  const calculateAvgScore = (arr) => {
-    let total = 0;
-    arr.forEach((review) => {
-      total += Number(review.score);
-    });
-    return (total / arr.length).toFixed(1);
-  };
+  const albumName = props.match.params.album_name;
 
   useEffect(() => {
     let mounted = true;

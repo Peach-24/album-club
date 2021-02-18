@@ -13,3 +13,11 @@ export const trimDateString = (str) => {
   }
   return selected.join(" ");
 };
+
+export const calculateAvgScore = (arr) => {
+  let total = 0;
+  arr.forEach((review) => {
+    total += Number(review.score);
+  });
+  return (total / arr.length).toFixed(1);
+};

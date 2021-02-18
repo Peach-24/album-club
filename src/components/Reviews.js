@@ -34,16 +34,19 @@ export default function Reviews() {
     <>
       <Header title="Previous albums" />
       <div id="reviews-container">
+        <button onClick={() => console.log(albums)}>
+          Click for albumsList
+        </button>
         <div id="reviews-box">
           {loaded ? (
             <ol id="reviews-list">
-              {albums.map((album) => {
+              {albums.map((x) => {
                 return (
-                  <li key={album.album} id="reviews-list-item">
-                    <Link to={`/reviews/${album.album}`}>
+                  <li key={x.album} id="reviews-list-item">
+                    <Link to={`/reviews/${x.album}`}>
                       <img
                         id="reviews-list-album-cover"
-                        src={album.artwork || "https://via.placeholder.com/300"}
+                        src={x.artwork || "https://via.placeholder.com/300"}
                         alt="album cover"
                       />
                     </Link>

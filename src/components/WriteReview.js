@@ -25,6 +25,7 @@ export default function WriteReview({ album }) {
       .set({
         artwork: album.artwork,
         artist: album.artist_name,
+        album: album.album_name,
       })
       .then(() => {
         db.collection("reviews")
