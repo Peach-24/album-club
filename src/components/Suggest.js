@@ -28,6 +28,7 @@ export default function Suggest() {
             spotify_link: spotifyLink,
             author: name,
             artwork: link,
+            created_at: firebase.firestore.FieldValue.serverTimestamp(),
           })
           .then(() => {
             console.log("Successfully submitted.");

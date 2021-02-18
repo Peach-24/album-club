@@ -18,8 +18,11 @@ export default function Schedule() {
         querySnapshot.forEach((doc) => {
           albumsList.push(doc.data());
         });
-        albumsList.splice(0, 1);
-        setAlbums(albumsList);
+        let inOrderAlbums = albumsList
+          .sort((album) => album.created_at)
+          .reverse();
+        inOrderAlbums.splice(0, 1);
+        setAlbums(inOrderAlbums);
         setLoaded(true);
       });
   };

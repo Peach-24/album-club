@@ -25,7 +25,10 @@ export default function Dashboard() {
         querySnapshot.forEach((doc) => {
           albumsList.push(doc.data());
         });
-        setAlbums(albumsList);
+        let inOrderAlbums = albumsList
+          .sort((album) => album.created_at)
+          .reverse();
+        setAlbums(inOrderAlbums);
         setLoaded(true);
       });
   };
