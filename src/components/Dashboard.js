@@ -3,18 +3,23 @@ import "../App.css";
 import firebase from "firebase";
 import "firebase/firebase-firestore";
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-// import {
-//   fa-spotify
-// } from "@fortawesome/free-solid-svg-icons";
-
 import Header from "./Header";
 import WriteReview from "./WriteReview";
 
+import { secondsToDatePlusWeek, trimDateString } from "../utils/formatters";
+
 export default function Dashboard() {
-  const [albums, setAlbums] = useState([]);
+  // const [albums, setAlbums] = useState([]);
+  const [currentAlbum, setCurrentAlbum] = useState({});
+  const [cloneAlbum, setCloneAlbum] = useState({});
+  const [startDate, setStartDate] = useState("");
+  const [endDate, setEndDate] = useState("");
   const [loaded, setLoaded] = useState(false);
   const [clickedReview, setClickedReview] = useState(false);
+
+  useEffect(() => {
+    fetchAlbums();
+  });
 
   const fetchAlbums = () => {
     const db = firebase.firestore();
@@ -28,16 +33,29 @@ export default function Dashboard() {
         let inOrderAlbums = albumsList
           .sort((album) => album.created_at)
           .reverse();
-        setAlbums(inOrderAlbums);
+        setCurrentAlbum(inOrderAlbums[0]);
+        setCloneAlbum(JSON.parse(JSON.stringify(inOrderAlbums[0])));
+        setStartDate(inOrderAlbums[0].created_at.toDate().toString());
+        setEndDate(
+          secondsToDatePlusWeek(
+            JSON.parse(JSON.stringify(inOrderAlbums[0])).created_at.seconds
+          ).toString()
+        );
         setLoaded(true);
       });
   };
 
+  /**
+   * Need to invoke changeCurrentAlbum when current date is older than endDate
+   * Currently, the dates only work for the first album in the array, the startDate is just the createdAt date
+   * We want the start date to be when the album in the array becomes the current album
+   *
+   */
   const changeCurrentAlbum = () => {
     console.log("changing album!");
     const db = firebase.firestore();
     db.collection("suggested_albums")
-      .doc(albums[0].album_name)
+      .doc(currentAlbum.album_name)
       .delete()
       .then(() => {
         console.log("Document successfully deleted!");
@@ -46,10 +64,6 @@ export default function Dashboard() {
         console.error("Error removing document: ", error);
       });
   };
-
-  useEffect(() => {
-    fetchAlbums();
-  });
 
   return (
     <>
@@ -61,28 +75,31 @@ export default function Dashboard() {
         {loaded ? (
           <>
             <div>
-              <a href={albums[0].spotify_link}>
+              <a href={currentAlbum.spotify_link}>
                 <img
                   id="album-cover"
                   alt="placeholder"
-                  src={albums[0].artwork}
+                  src={currentAlbum.artwork}
                 />
               </a>
             </div>
-            <a href={albums[0].spotify_link}>
+            <a href={currentAlbum.spotify_link}>
               <button id="listen-spotify-button">Listen on Spotify</button>
             </a>
             <div>
               <div id="current-album-info">
                 <p>
-                  Artist: <strong>{albums[0].artist_name}</strong>
+                  Artist: <strong>{currentAlbum.artist_name}</strong>
                 </p>
                 <p>
-                  Album: <strong>{albums[0].album_name}</strong>
+                  Album: <strong>{currentAlbum.album_name}</strong>
                 </p>
-                <p>Listening dates: ...</p>
                 <p>
-                  Nominated by: <strong>{albums[0].author}</strong>
+                  Listening dates: <strong>{trimDateString(startDate)}</strong>{" "}
+                  until <strong>{trimDateString(endDate)}</strong>
+                </p>
+                <p>
+                  Nominated by: <strong>{currentAlbum.author}</strong>
                 </p>
               </div>
               <button
@@ -102,7 +119,7 @@ export default function Dashboard() {
                   <p id="write-review-button-text">Hide review form</p>
                 )}
               </button>
-              {clickedReview ? <WriteReview album={albums[0]} /> : <p></p>}
+              {clickedReview ? <WriteReview album={currentAlbum} /> : <p></p>}
             </div>
           </>
         ) : (
