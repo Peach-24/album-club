@@ -5,29 +5,8 @@ import "../App.css";
 
 import Header from "./Header";
 
-export default function Schedule() {
-  const [albums, setAlbums] = useState([]);
-  const [loaded, setLoaded] = useState(false);
-
-  useEffect(() => {
-    let mounted = true;
-    const db = firebase.firestore();
-    db.collection("suggested_albums")
-      .orderBy("created_at")
-      .get()
-      .then((querySnapshot) => {
-        if (mounted) {
-          let albumsList = [];
-          querySnapshot.forEach((doc) => {
-            albumsList.push(doc.data());
-          });
-          // REMOVES FIRST ALBUM (CURRENT ALBUM) ----> albumsList.splice(0, 1);
-          setAlbums(albumsList);
-          setLoaded(true);
-        }
-      });
-    return () => (mounted = false);
-  }, [albums]);
+export default function Schedule({ albums }) {
+  const [loaded, setLoaded] = useState(true);
 
   return (
     <>

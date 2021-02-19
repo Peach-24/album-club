@@ -10,7 +10,7 @@ import { calculateAvgScore } from "../utils/formatters";
 export default function SingleAlbum(props) {
   const [loaded, setLoaded] = useState(false);
   const [reviews, setReviews] = useState([]);
-
+  console.log(props);
   const albumName = props.match.params.album_name;
 
   useEffect(() => {
@@ -36,7 +36,7 @@ export default function SingleAlbum(props) {
 
   return (
     <>
-      <Header title={albumName} />
+      {/* <Header title={albumName} /> */}
       <div id="album-reviews-container">
         <div id="album-reviews-box">
           <div id="album-review-list-header">

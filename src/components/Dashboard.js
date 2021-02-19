@@ -8,47 +8,9 @@ import WriteReview from "./WriteReview";
 
 import { secondsToDatePlusWeek, trimDateString } from "../utils/formatters";
 
-export default function Dashboard() {
-  const [allAlbums, setAllAlbums] = useState([]);
-  const [currentAlbum, setCurrentAlbum] = useState({});
-  const [cloneAlbum, setCloneAlbum] = useState({});
-  const [startDate, setStartDate] = useState("");
-  const [endDate, setEndDate] = useState("");
-  const [loaded, setLoaded] = useState(false);
+export default function Dashboard({ currentAlbum }) {
+  const [loaded, setLoaded] = useState(true);
   const [clickedReview, setClickedReview] = useState(false);
-
-  useEffect(() => {
-    let mounted = true;
-    const db = firebase.firestore();
-    db.collection("suggested_albums")
-      .orderBy("created_at")
-      .get()
-      .then((querySnapshot) => {
-        if (mounted) {
-          let albumsList = [];
-          querySnapshot.forEach((doc) => {
-            albumsList.push(doc.data());
-          });
-          setAllAlbums(albumsList);
-          setCurrentAlbum(albumsList[0]);
-          setCloneAlbum(JSON.parse(JSON.stringify(albumsList[0])));
-          // setStartDate should use
-          setStartDate(albumsList[0].created_at.toDate().toString());
-          setEndDate(
-            secondsToDatePlusWeek(
-              JSON.parse(JSON.stringify(albumsList[0])).created_at.seconds
-            ).toString()
-          );
-          setLoaded(true);
-        }
-      })
-      .then(() => {
-        // console.log("Then block: currentAlbum", currentAlbum);
-        // console.log("Then block: endDate", endDate);
-      });
-
-    return () => (mounted = false);
-  }, [currentAlbum]);
 
   const changeCurrentAlbum = () => {
     /* Below DELETEs currentAlbum from firebase - submissions array
@@ -98,8 +60,8 @@ export default function Dashboard() {
                   Nominated by: <strong>{currentAlbum.author}</strong>
                 </p>
                 <p>
-                  <strong>{trimDateString(startDate)}</strong> until{" "}
-                  <strong>{trimDateString(endDate)}</strong>
+                  {/* <strong>{trimDateString(startDate)}</strong> until{" "}
+                  <strong>{trimDateString(endDate)}</strong> */}
                 </p>
               </div>
               <button

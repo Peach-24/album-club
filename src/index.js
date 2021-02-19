@@ -9,12 +9,12 @@ import reportWebVitals from "./reportWebVitals";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 firebase.initializeApp({
-  apiKey: "AIzaSyC270jcPrFPd357Ci9DGMgOCbOFzVIDCvw",
-  authDomain: "album-club-96cde.firebaseapp.com",
-  projectId: "album-club-96cde",
-  storageBucket: "album-club-96cde.appspot.com",
-  messagingSenderId: "460940433646",
-  appId: "1:460940433646:web:eaad139f7825661bd57bff",
+  apiKey: "AIzaSyAhBrBV1njwZZOCUvuFEyr1qqL-sPpqTM0",
+  authDomain: "album-club-2.firebaseapp.com",
+  projectId: "album-club-2",
+  storageBucket: "album-club-2.appspot.com",
+  messagingSenderId: "317060580734",
+  appId: "1:317060580734:web:8530a592e3b5a5aaa69f2f",
 });
 
 const rootElement = document.getElementById("root");
