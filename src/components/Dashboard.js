@@ -9,12 +9,14 @@ import WriteReview from "./WriteReview";
 import { secondsToDatePlusWeek, trimDateString } from "../utils/formatters";
 
 export default function Dashboard() {
+  const [allAlbums, setAllAlbums] = useState([]);
   const [currentAlbum, setCurrentAlbum] = useState({});
   const [cloneAlbum, setCloneAlbum] = useState({});
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
   const [loaded, setLoaded] = useState(false);
   const [clickedReview, setClickedReview] = useState(false);
+  const [currentCount, setCurrentCount] = useState(0);
 
   useEffect(() => {
     let mounted = true;
@@ -30,29 +32,39 @@ export default function Dashboard() {
           let inOrderAlbums = albumsList
             .sort((album) => album.created_at)
             .reverse();
-          setCurrentAlbum(inOrderAlbums[0]);
-          setCloneAlbum(JSON.parse(JSON.stringify(inOrderAlbums[0])));
-          setStartDate(inOrderAlbums[0].created_at.toDate().toString());
+          setAllAlbums(inOrderAlbums);
+          setCurrentAlbum(inOrderAlbums[currentCount]);
+          setCloneAlbum(
+            JSON.parse(JSON.stringify(inOrderAlbums[currentCount]))
+          );
+          // setStartDate should use
+          setStartDate(
+            inOrderAlbums[currentCount].created_at.toDate().toString()
+          );
           setEndDate(
             secondsToDatePlusWeek(
-              JSON.parse(JSON.stringify(inOrderAlbums[0])).created_at.seconds
+              JSON.parse(JSON.stringify(inOrderAlbums[currentCount])).created_at
+                .seconds
             ).toString()
           );
           setLoaded(true);
         }
+      })
+      .then(() => {
+        // console.log("Then block: currentAlbum", currentAlbum);
+        // console.log("Then block: endDate", endDate);
       });
 
     return () => (mounted = false);
   }, [currentAlbum]);
 
-  /**
-   * Need to invoke changeCurrentAlbum when current date is older than endDate
-   * Currently, the dates only work for the first album in the array, the startDate is just the createdAt date
-   * We want the start date to be when the album in the array becomes the current album
-   *
-   */
   const changeCurrentAlbum = () => {
+    /* Below uses a count to move the album on, but always resets to 0 on load, CURRENT ALBUM STATUS NEEDS TO BE STORED IN FIREBASE ? */
     console.log("changing album!");
+    setCurrentCount(currentCount + 1);
+    setCurrentAlbum(allAlbums[currentCount]);
+
+    /* Below DELETEs currentAlbum from firebase - submissions array
     const db = firebase.firestore();
     db.collection("suggested_albums")
       .doc(currentAlbum.album_name)
@@ -63,6 +75,7 @@ export default function Dashboard() {
       .catch((error) => {
         console.error("Error removing document: ", error);
       });
+      */
   };
 
   return (
@@ -95,11 +108,11 @@ export default function Dashboard() {
                   Album: <strong>{currentAlbum.album_name}</strong>
                 </p>
                 <p>
-                  Listening dates: <strong>{trimDateString(startDate)}</strong>{" "}
-                  until <strong>{trimDateString(endDate)}</strong>
+                  Nominated by: <strong>{currentAlbum.author}</strong>
                 </p>
                 <p>
-                  Nominated by: <strong>{currentAlbum.author}</strong>
+                  <strong>{trimDateString(startDate)}</strong> until{" "}
+                  <strong>{trimDateString(endDate)}</strong>
                 </p>
               </div>
               <button

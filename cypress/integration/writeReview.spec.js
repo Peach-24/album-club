@@ -6,7 +6,7 @@ describe("Write review screen", () => {
     cy.url().should("include", "/home");
   });
   it("has a button for writing a review, which loads the review component", () => {
-    cy.get("button").contains("Write a review").click();
+    cy.get("#write-review-button").click();
     cy.get("#write-review-container");
     cy.get("textarea");
     cy.get("select");
@@ -32,5 +32,23 @@ describe("Write review screen", () => {
       .should("have.value", "Lewis")
       .select("Kieran")
       .should("have.value", "Kieran");
+  });
+  it("shows an error message if a name isn't chosen + post review is clicked ", () => {
+    cy.get("select").select("Your name");
+    cy.get("#post-review-button").click();
+    cy.get("#post-message").contains("All fields must be filled in.");
+  });
+  it("shows an error message if a review body is empty  + post review is clicked ", () => {
+    cy.get("select").select("Kieran");
+    cy.get("#your-review-body").clear();
+    cy.get("#post-review-button").click();
+    cy.get("#post-message").contains("All fields must be filled in.");
+  });
+  it("shows an error message if a review body is empty  + post review is clicked ", () => {
+    cy.get("select").select("Lewis");
+    cy.get("#your-review-body").clear();
+    cy.get("#post-review-button").type("test review");
+    cy.get("#review-score").clear();
+    cy.get("#post-message").contains("All fields must be filled in.");
   });
 });

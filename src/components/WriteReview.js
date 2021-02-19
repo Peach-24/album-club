@@ -10,35 +10,39 @@ export default function WriteReview({ album }) {
   const [postMessage, setPostMessage] = useState("");
 
   const handlePost = () => {
-    setPostReviewClicked(true);
-    const reviewObj = {
-      author: name,
-      reviewBody,
-      score,
-      album: album.album_name,
-      artist: album.artist_name,
-    };
-    const db = firebase.firestore();
-
-    db.collection("reviews")
-      .doc(album.album_name)
-      .set({
-        artwork: album.artwork,
-        artist: album.artist_name,
+    if (name !== "" && reviewBody !== "" && score !== "") {
+      setPostReviewClicked(true);
+      const reviewObj = {
+        author: name,
+        reviewBody,
+        score,
         album: album.album_name,
-      })
-      .then(() => {
-        db.collection("reviews")
-          .doc(album.album_name)
-          .collection("submissions")
-          .doc(name)
-          .set(reviewObj)
-          .then(() => {
-            setPostMessage("Review added!");
-          })
-          .catch((err) => console.log(err));
-      })
-      .catch((err) => console.log(err));
+        artist: album.artist_name,
+      };
+      const db = firebase.firestore();
+
+      db.collection("reviews")
+        .doc(album.album_name)
+        .set({
+          artwork: album.artwork,
+          artist: album.artist_name,
+          album: album.album_name,
+        })
+        .then(() => {
+          db.collection("reviews")
+            .doc(album.album_name)
+            .collection("submissions")
+            .doc(name)
+            .set(reviewObj)
+            .then(() => {
+              setPostMessage("Review added!");
+            })
+            .catch((err) => console.log(err));
+        })
+        .catch((err) => console.log(err));
+    } else {
+      setPostMessage("All fields must be filled in.");
+    }
   };
 
   return (
