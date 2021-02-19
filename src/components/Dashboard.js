@@ -16,12 +16,12 @@ export default function Dashboard() {
   const [endDate, setEndDate] = useState("");
   const [loaded, setLoaded] = useState(false);
   const [clickedReview, setClickedReview] = useState(false);
-  const [currentCount, setCurrentCount] = useState(0);
 
   useEffect(() => {
     let mounted = true;
     const db = firebase.firestore();
     db.collection("suggested_albums")
+      .orderBy("created_at")
       .get()
       .then((querySnapshot) => {
         if (mounted) {
@@ -29,22 +29,14 @@ export default function Dashboard() {
           querySnapshot.forEach((doc) => {
             albumsList.push(doc.data());
           });
-          let inOrderAlbums = albumsList
-            .sort((album) => album.created_at)
-            .reverse();
-          setAllAlbums(inOrderAlbums);
-          setCurrentAlbum(inOrderAlbums[currentCount]);
-          setCloneAlbum(
-            JSON.parse(JSON.stringify(inOrderAlbums[currentCount]))
-          );
+          setAllAlbums(albumsList);
+          setCurrentAlbum(albumsList[0]);
+          setCloneAlbum(JSON.parse(JSON.stringify(albumsList[0])));
           // setStartDate should use
-          setStartDate(
-            inOrderAlbums[currentCount].created_at.toDate().toString()
-          );
+          setStartDate(albumsList[0].created_at.toDate().toString());
           setEndDate(
             secondsToDatePlusWeek(
-              JSON.parse(JSON.stringify(inOrderAlbums[currentCount])).created_at
-                .seconds
+              JSON.parse(JSON.stringify(albumsList[0])).created_at.seconds
             ).toString()
           );
           setLoaded(true);
@@ -59,11 +51,6 @@ export default function Dashboard() {
   }, [currentAlbum]);
 
   const changeCurrentAlbum = () => {
-    /* Below uses a count to move the album on, but always resets to 0 on load, CURRENT ALBUM STATUS NEEDS TO BE STORED IN FIREBASE ? */
-    console.log("changing album!");
-    setCurrentCount(currentCount + 1);
-    setCurrentAlbum(allAlbums[currentCount]);
-
     /* Below DELETEs currentAlbum from firebase - submissions array
     const db = firebase.firestore();
     db.collection("suggested_albums")

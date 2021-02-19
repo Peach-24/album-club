@@ -13,6 +13,7 @@ export default function Schedule() {
     let mounted = true;
     const db = firebase.firestore();
     db.collection("suggested_albums")
+      .orderBy("created_at")
       .get()
       .then((querySnapshot) => {
         if (mounted) {
@@ -20,11 +21,8 @@ export default function Schedule() {
           querySnapshot.forEach((doc) => {
             albumsList.push(doc.data());
           });
-          let inOrderAlbums = albumsList
-            .sort((album) => album.created_at)
-            .reverse();
-          inOrderAlbums.splice(0, 1);
-          setAlbums(inOrderAlbums);
+          // REMOVES FIRST ALBUM (CURRENT ALBUM) ----> albumsList.splice(0, 1);
+          setAlbums(albumsList);
           setLoaded(true);
         }
       });
