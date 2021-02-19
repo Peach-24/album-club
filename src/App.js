@@ -18,6 +18,11 @@ export default function App() {
   const [loggedIn, setLoggedIn] = useState(false);
   const [user, setUser] = useState({});
   const [albums, setAlbums] = useState([]);
+  const [currentAlbum, setCurrentAlbum] = useState({});
+
+  useEffect(() => {
+    fetchAlbums();
+  }, []);
 
   const fetchAlbums = () => {
     let mounted = true;
@@ -32,6 +37,7 @@ export default function App() {
             albumsList.push(doc.data());
           });
           setAlbums(albumsList);
+          setCurrentAlbum(albumsList[0]);
           console.log("Albums:", albumsList);
         }
       })
@@ -41,28 +47,20 @@ export default function App() {
     return () => (mounted = false);
   };
 
-  useEffect(() => {
-    // let mounted = true;
-    // const db = firebase.firestore();
-    // db.collection("suggested_albums")
-    //   .orderBy("created_at")
-    //   .get()
-    // .then((querySnapshot) => {
-    //   if (mounted) {
-    //     let albumsList = [];
-    //     querySnapshot.forEach((doc) => {
-    //       albumsList.push(doc.data());
-    //     });
-    //     setAlbums(albumsList);
-    //     console.log("Albums:", albumsList);
-    //   }
-    // })
-    // .catch((err) => {
-    //   console.log("Error during request: ", err);
-    // });
-    fetchAlbums();
-    // return () => (mounted = false);
-  }, []);
+  const changeCurrentAlbum = () => {
+    // Below DELETEs currentAlbum from firebase - submissions array
+    const db = firebase.firestore();
+    db.collection("suggested_albums")
+      .doc(currentAlbum.album_name)
+      .delete()
+      .then(() => {
+        console.log("Document successfully deleted!");
+        fetchAlbums();
+      })
+      .catch((error) => {
+        console.error("Error removing document: ", error);
+      });
+  };
 
   const signIn = (email, password) => {
     firebase
@@ -102,7 +100,11 @@ export default function App() {
               <ScheduleScreen albums={albums} fetchAlbums={fetchAlbums} />
             </Route>
             <Route path="/home">
-              <DashboardScreen currentAlbum={albums[0]} />
+              <DashboardScreen
+                currentAlbum={currentAlbum}
+                fetchAlbums={fetchAlbums}
+                changeCurrentAlbum={changeCurrentAlbum}
+              />
             </Route>
           </Switch>
         </BrowserRouter>
