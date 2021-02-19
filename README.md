@@ -10,10 +10,8 @@ I'm creating a social review platform for groups of friends to nominate albums t
 
 ### Next steps
 
-- DISPLAY ALBUM COVERS - Make use of the MusicBrainz API to allow the user to search for a release, then use the `mbid` to query the MusicBrainz Cover Art Archive.
-- Create review feed for people to comment on the current album, including upvoting + sorting of reviews.
 - Implement time-based restrictions for determining which is the current album (maybe using date-fns)
-- Implement voting ability on suggested albums list to determine which albums are positioned higher in the list.
+- Implement Firebase/Auth for separate user accounts
 
 ### Technologies
 
