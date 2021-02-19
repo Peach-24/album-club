@@ -25,18 +25,20 @@ export default function SingleAlbum() {
       .collection("submissions")
       .get()
       .then((querySnapshot) => {
-        if (mounted) {
-          let reviewsList = [];
-          querySnapshot.forEach((doc) => {
-            reviewsList.push(doc.data());
-          });
-          setReviews(reviewsList);
-          setLoaded(true);
+        if (querySnapshot.exists()) {
+          if (mounted) {
+            let reviewsList = [];
+            querySnapshot.forEach((doc) => {
+              reviewsList.push(doc.data());
+            });
+            setReviews(reviewsList);
+            setLoaded(true);
+          }
         }
       });
 
     return () => (mounted = false);
-  }, [reviews, albumName]);
+  }, [reviews]);
 
   return (
     <>

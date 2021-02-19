@@ -19,6 +19,26 @@ export default function App() {
   // const [user, setUser] = useState({});
   const [albums, setAlbums] = useState([]);
 
+  useEffect(() => {
+    let mounted = true;
+    const db = firebase.firestore();
+    db.collection("suggested_albums")
+      .orderBy("created_at")
+      .get()
+      .then((querySnapshot) => {
+        if (querySnapshot.exists()) {
+          if (mounted) {
+            let albumsList = [];
+            querySnapshot.forEach((doc) => {
+              albumsList.push(doc.data());
+            });
+            setAlbums(albumsList);
+          }
+        }
+      });
+    return () => (mounted = false);
+  }, [albums]);
+
   const signIn = (email, password) => {
     firebase
       .auth()
@@ -34,24 +54,6 @@ export default function App() {
         console.log(errorCode, errorMessage);
       });
   };
-
-  useEffect(() => {
-    let mounted = true;
-    const db = firebase.firestore();
-    db.collection("suggested_albums")
-      .orderBy("created_at")
-      .get()
-      .then((querySnapshot) => {
-        if (mounted) {
-          let albumsList = [];
-          querySnapshot.forEach((doc) => {
-            albumsList.push(doc.data());
-          });
-          setAlbums(albumsList);
-        }
-      });
-    return () => (mounted = false);
-  }, [albums]);
 
   return (
     <div>
