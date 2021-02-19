@@ -17,20 +17,19 @@ export default function Reviews() {
     db.collection("reviews")
       .get()
       .then((querySnapshot) => {
-        if (querySnapshot.exists()) {
-          if (mounted) {
-            let albumsList = [];
-            querySnapshot.forEach((doc) => {
-              albumsList.push(doc.data());
-            });
-            // console.log(albumsList);
-            setAlbums(albumsList);
-            setLoaded(true);
-          }
+        if (mounted) {
+          let albumsList = [];
+          querySnapshot.forEach((doc) => {
+            albumsList.push(doc.data());
+          });
+          // console.log(albumsList);
+          setAlbums(albumsList);
+          console.log("Reviewed Albums:", albumsList);
+          setLoaded(true);
         }
       });
     return () => (mounted = false);
-  }, [albums]);
+  }, []);
 
   return (
     <>

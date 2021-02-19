@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "../App.css";
 import firebase from "firebase";
 import "firebase/firebase-firestore";
@@ -9,7 +9,6 @@ import WriteReview from "./WriteReview";
 import { secondsToDatePlusWeek, trimDateString } from "../utils/formatters";
 
 export default function Dashboard({ currentAlbum }) {
-  const [loaded, setLoaded] = useState(true);
   const [clickedReview, setClickedReview] = useState(false);
 
   const changeCurrentAlbum = () => {
@@ -33,7 +32,7 @@ export default function Dashboard({ currentAlbum }) {
         <button onClick={() => changeCurrentAlbum()}>
           Change current album
         </button>
-        {loaded ? (
+        {currentAlbum ? (
           <>
             <div>
               <a href={currentAlbum.spotify_link}>
@@ -84,7 +83,7 @@ export default function Dashboard({ currentAlbum }) {
           </>
         ) : (
           <div id="loading-dashboard">
-            <p id="loading-list-text">Loading...</p>
+            <p id="loading-list-text">Suggest an album on the suggest tab 🎶</p>
           </div>
         )}
       </div>

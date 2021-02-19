@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from "react";
-import firebase from "firebase";
-import "firebase/firebase-firestore";
 import "../App.css";
 
 import Header from "./Header";
 
-export default function Schedule({ albums }) {
+export default function Schedule({ albums, fetchAlbums }) {
   const [loaded, setLoaded] = useState(true);
+  const [schedule, setSchedule] = useState(albums);
+
+  useEffect(() => {
+    fetchAlbums();
+  }, [schedule]);
 
   return (
     <>

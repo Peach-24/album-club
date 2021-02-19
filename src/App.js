@@ -16,28 +16,53 @@ import Login from "./components/auth/Login";
 
 export default function App() {
   const [loggedIn, setLoggedIn] = useState(false);
-  // const [user, setUser] = useState({});
+  const [user, setUser] = useState({});
   const [albums, setAlbums] = useState([]);
 
-  useEffect(() => {
+  const fetchAlbums = () => {
     let mounted = true;
     const db = firebase.firestore();
     db.collection("suggested_albums")
       .orderBy("created_at")
       .get()
       .then((querySnapshot) => {
-        if (querySnapshot.exists()) {
-          if (mounted) {
-            let albumsList = [];
-            querySnapshot.forEach((doc) => {
-              albumsList.push(doc.data());
-            });
-            setAlbums(albumsList);
-          }
+        if (mounted) {
+          let albumsList = [];
+          querySnapshot.forEach((doc) => {
+            albumsList.push(doc.data());
+          });
+          setAlbums(albumsList);
+          console.log("Albums:", albumsList);
         }
+      })
+      .catch((err) => {
+        console.log("Error during request: ", err);
       });
     return () => (mounted = false);
-  }, [albums]);
+  };
+
+  useEffect(() => {
+    // let mounted = true;
+    // const db = firebase.firestore();
+    // db.collection("suggested_albums")
+    //   .orderBy("created_at")
+    //   .get()
+    // .then((querySnapshot) => {
+    //   if (mounted) {
+    //     let albumsList = [];
+    //     querySnapshot.forEach((doc) => {
+    //       albumsList.push(doc.data());
+    //     });
+    //     setAlbums(albumsList);
+    //     console.log("Albums:", albumsList);
+    //   }
+    // })
+    // .catch((err) => {
+    //   console.log("Error during request: ", err);
+    // });
+    fetchAlbums();
+    // return () => (mounted = false);
+  }, []);
 
   const signIn = (email, password) => {
     firebase
@@ -45,7 +70,7 @@ export default function App() {
       .signInWithEmailAndPassword(email, password)
       .then((userCredential) => {
         // console.log(user);
-        // setUser(userCredential.user);
+        setUser(userCredential.user);
         setLoggedIn(true);
       })
       .catch((error) => {
@@ -74,7 +99,7 @@ export default function App() {
               <SuggestScreen />
             </Route>
             <Route path="/schedule">
-              <ScheduleScreen albums={albums} />
+              <ScheduleScreen albums={albums} fetchAlbums={fetchAlbums} />
             </Route>
             <Route path="/home">
               <DashboardScreen currentAlbum={albums[0]} />
