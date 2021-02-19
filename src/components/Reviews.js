@@ -40,13 +40,13 @@ export default function Reviews() {
         <div id="reviews-box">
           {loaded ? (
             <ol id="reviews-list">
-              {albums.map((x) => {
+              {albums.map((album) => {
                 return (
-                  <li key={x.album} id="reviews-list-item">
-                    <Link to={`/reviews/${x.album}`}>
+                  <li key={album.album} id="reviews-list-item">
+                    <Link to={`/reviews/${album.album}`}>
                       <img
                         id="reviews-list-album-cover"
-                        src={x.artwork || "https://via.placeholder.com/300"}
+                        src={album.artwork || "https://via.placeholder.com/300"}
                         alt="album cover"
                       />
                     </Link>

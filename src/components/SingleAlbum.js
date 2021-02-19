@@ -2,16 +2,20 @@ import React, { useState, useEffect } from "react";
 import "../App.css";
 import firebase from "firebase";
 import "firebase/firebase-firestore";
+import { useHistory } from "react-router-dom";
 
 import Header from "./Header";
 
 import { calculateAvgScore } from "../utils/formatters";
 
-export default function SingleAlbum(props) {
+export default function SingleAlbum() {
   const [loaded, setLoaded] = useState(false);
   const [reviews, setReviews] = useState([]);
-  console.log(props);
-  const albumName = props.match.params.album_name;
+
+  let history = useHistory();
+  let pathSplits = history.location.pathname.split("/");
+
+  const albumName = pathSplits[2];
 
   useEffect(() => {
     let mounted = true;
@@ -32,11 +36,11 @@ export default function SingleAlbum(props) {
       });
 
     return () => (mounted = false);
-  }, [reviews]);
+  }, [reviews, albumName]);
 
   return (
     <>
-      {/* <Header title={albumName} /> */}
+      <Header title={albumName} />
       <div id="album-reviews-container">
         <div id="album-reviews-box">
           <div id="album-review-list-header">

@@ -13,7 +13,7 @@ export default function Dashboard({ currentAlbum }) {
   const [clickedReview, setClickedReview] = useState(false);
 
   const changeCurrentAlbum = () => {
-    /* Below DELETEs currentAlbum from firebase - submissions array
+    // Below DELETEs currentAlbum from firebase - submissions array
     const db = firebase.firestore();
     db.collection("suggested_albums")
       .doc(currentAlbum.album_name)
@@ -24,7 +24,6 @@ export default function Dashboard({ currentAlbum }) {
       .catch((error) => {
         console.error("Error removing document: ", error);
       });
-      */
   };
 
   return (

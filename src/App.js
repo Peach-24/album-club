@@ -47,9 +47,7 @@ export default function App() {
           querySnapshot.forEach((doc) => {
             albumsList.push(doc.data());
           });
-          // REMOVES FIRST ALBUM (CURRENT ALBUM) ----> albumsList.splice(0, 1);
           setAlbums(albumsList);
-          // setLoaded(true);
         }
       });
     return () => (mounted = false);
@@ -64,15 +62,6 @@ export default function App() {
             <Route exact path="/">
               <Redirect to="/home" />
             </Route>
-            {/* {routes.map(({ path, component: C }) => (
-              <Route key={path} path={path} component={C} />
-            ))} */}
-            {/* <Route path="/reviews/:album_name" component={SingleAlbumScreen} />
-            <Route path="/reviews" component={ReviewsScreen} />
-            <Route path="/suggest" component={SuggestScreen} />
-            <Route path="/schedule" component={ScheduleScreen} />
-            <Route path="/home" component={DashboardScreen} /> */}
-            {/* RRV5 */}
             <Route path="/reviews/:album_name">
               <SingleAlbumScreen />
             </Route>
