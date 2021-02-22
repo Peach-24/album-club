@@ -6,7 +6,7 @@ import "firebase/auth";
 
 import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 
-import { secondsToDatePlusWeek, addListeningDates } from "./utils/formatters";
+import { addListeningDates } from "./utils/formatters";
 
 import Navigation from "./components/Navigation";
 import DashboardScreen from "./components/Dashboard";
