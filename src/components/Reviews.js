@@ -35,9 +35,6 @@ export default function Reviews() {
     <>
       <Header title="Previous albums" />
       <div id="reviews-container">
-        <button onClick={() => console.log(albums)}>
-          Click for albumsList
-        </button>
         <div id="reviews-box">
           {loaded ? (
             <ol id="reviews-list">

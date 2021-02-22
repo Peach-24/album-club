@@ -21,3 +21,20 @@ export const calculateAvgScore = (arr) => {
   });
   return (total / arr.length).toFixed(1);
 };
+
+export const addListeningDates = (arr) => {
+  let latestEndDate = "";
+  let first = arr[0];
+  first["start_date"] = first.created_at.toDate().toString();
+  first["end_date"] = secondsToDatePlusWeek(first.created_at.seconds);
+  latestEndDate = secondsToDatePlusWeek(first.created_at.seconds);
+
+  for (let i = 1; i < arr.length; i++) {
+    arr[i]["start_date"] = latestEndDate;
+    let nextStartDate = Date.parse(arr[i]["start_date"]);
+    arr[i]["end_date"] = secondsToDatePlusWeek(nextStartDate / 1000);
+    latestEndDate = arr[i]["end_date"];
+  }
+
+  return arr;
+};

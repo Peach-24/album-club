@@ -6,6 +6,8 @@ import "firebase/auth";
 
 import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 
+import { secondsToDatePlusWeek, addListeningDates } from "./utils/formatters";
+
 import Navigation from "./components/Navigation";
 import DashboardScreen from "./components/Dashboard";
 import ScheduleScreen from "./components/Schedule";
@@ -36,30 +38,36 @@ export default function App() {
           querySnapshot.forEach((doc) => {
             albumsList.push(doc.data());
           });
-          setAlbums(albumsList);
-          setCurrentAlbum(albumsList[0]);
-          console.log("Albums:", albumsList);
+          let withDates = addListeningDates(albumsList);
+          console.log("Albums with dates", withDates);
+          setCurrentAlbumActive(withDates);
+          setAlbums(withDates);
         }
       })
       .catch((err) => {
         console.log("Error during request: ", err);
       });
+
     return () => (mounted = false);
   };
 
-  const changeCurrentAlbum = () => {
-    // Below DELETEs currentAlbum from firebase - submissions array
-    const db = firebase.firestore();
-    db.collection("suggested_albums")
-      .doc(currentAlbum.album_name)
-      .delete()
-      .then(() => {
-        console.log("Document successfully deleted!");
-        fetchAlbums();
-      })
-      .catch((error) => {
-        console.error("Error removing document: ", error);
-      });
+  const setCurrentAlbumActive = (arr) => {
+    const today = new Date().getTime();
+
+    for (let album of arr) {
+      if (
+        Date.parse(album.start_date) < today &&
+        Date.parse(album.end_date) > today
+      ) {
+        setCurrentAlbum(album);
+        console.log(
+          "Current album is:",
+          currentAlbum.album_name,
+          "by",
+          currentAlbum.artist_name
+        );
+      }
+    }
   };
 
   const signIn = (email, password) => {
@@ -103,7 +111,6 @@ export default function App() {
               <DashboardScreen
                 currentAlbum={currentAlbum}
                 fetchAlbums={fetchAlbums}
-                changeCurrentAlbum={changeCurrentAlbum}
               />
             </Route>
           </Switch>

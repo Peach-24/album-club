@@ -8,16 +8,13 @@ import WriteReview from "./WriteReview";
 
 import { secondsToDatePlusWeek, trimDateString } from "../utils/formatters";
 
-export default function Dashboard({ currentAlbum, changeCurrentAlbum }) {
+export default function Dashboard({ currentAlbum, fetchReviews }) {
   const [clickedReview, setClickedReview] = useState(false);
 
   return (
     <>
       <Header title="Current album" />
       <div id="current-album-container">
-        <button onClick={() => changeCurrentAlbum()}>
-          Change current album
-        </button>
         {currentAlbum ? (
           <>
             <div>
@@ -44,8 +41,13 @@ export default function Dashboard({ currentAlbum, changeCurrentAlbum }) {
                   Nominated by: <strong>{currentAlbum.author}</strong>
                 </p>
                 <p>
-                  {/* <strong>{trimDateString(startDate)}</strong> until{" "}
-                  <strong>{trimDateString(endDate)}</strong> */}
+                  <strong>
+                    {trimDateString(currentAlbum.start_date.toString()) || ""}
+                  </strong>{" "}
+                  until{" "}
+                  <strong>
+                    {trimDateString(currentAlbum.end_date.toString()) || ""}
+                  </strong>
                 </p>
               </div>
               <button
