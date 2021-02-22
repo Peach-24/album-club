@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "../App.css";
 
 import Header from "./Header";
+import { trimDateString } from "../utils/formatters";
 
 export default function Schedule({ albums, fetchAlbums }) {
   const [loaded, setLoaded] = useState(true);
@@ -31,7 +32,10 @@ export default function Schedule({ albums, fetchAlbums }) {
                     <div id="schedule-list-album-info">
                       <h5 id="schedule-album-name">{album.album_name}</h5>
                       <p id="schedule-artist-name">By {album.artist_name}</p>
-                      <p id="schedule-author-name">~ {album.author}</p>
+                      <p id="schedule-author-name">
+                        ~ {album.author} //{" "}
+                        {trimDateString(album.start_date.toString())}
+                      </p>
                     </div>
                   </li>
                 );

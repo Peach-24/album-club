@@ -86,6 +86,12 @@ export default function App() {
       });
   };
 
+  const futureAlbums = albums.filter(
+    (album) => album.end_date > new Date().getTime()
+  );
+
+  const trimmedFutureAlbums = futureAlbums.slice(1);
+
   return (
     <div>
       {loggedIn ? (
@@ -105,7 +111,10 @@ export default function App() {
               <SuggestScreen />
             </Route>
             <Route path="/schedule">
-              <ScheduleScreen albums={albums} fetchAlbums={fetchAlbums} />
+              <ScheduleScreen
+                albums={trimmedFutureAlbums}
+                fetchAlbums={fetchAlbums}
+              />
             </Route>
             <Route path="/home">
               <DashboardScreen
