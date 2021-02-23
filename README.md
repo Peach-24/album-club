@@ -28,11 +28,12 @@ It is a rudimentary looking front-end but fully functional and in use by my frie
 - I'm using a proxy server to allow me to fetch album artwork through an api - used when the user suggests an album. 
 
 ---
-### Want to check it out?
+### Want to take a closer look?
 
 Are you an employer looking for a creative and ambitious junior developer? I would love for you to take a closer look at this project, but I ask that if you do want to suggest an album, or write a review, you choose the user 'Peach' to do it. Thank you.
 
 https://album-club.netlify.app/
+
 password : **sheffhampton**
 
 ---
