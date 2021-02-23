@@ -34,9 +34,10 @@ It is a rudimentary looking front-end but fully functional and in use by my frie
 ### Want to take a closer look?
 
 Are you an employer looking for a creative and ambitious junior developer? I would love for you to take a closer look at this project, but I ask that if you do want to suggest an album, or write a review, you choose the user 'Peach' to do it. Thank you.
+- Please get in touch if you want to find out the password.
 
 https://album-club.netlify.app/
 
-password : **sheffhampton**
+password : *************
 
 ---
