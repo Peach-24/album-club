@@ -102,7 +102,7 @@ export default function Suggest() {
               <option value="Sam">Sam</option>
               <option value="Ben">Ben</option>
               <option value="Peach">Peach</option>
-              <option value="Lewis">Lewis</option>
+              <option value="Lew">Lew</option>
             </select>
           </label>
 

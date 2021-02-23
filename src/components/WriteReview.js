@@ -63,7 +63,7 @@ export default function WriteReview({ album }) {
             <option value="Sam">Sam</option>
             <option value="Ben">Ben</option>
             <option value="Peach">Peach</option>
-            <option value="Lewis">Lewis</option>
+            <option value="Lew">Lew</option>
           </select>
         </label>
         <label htmlFor="review-body">
