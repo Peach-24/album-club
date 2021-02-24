@@ -48,7 +48,7 @@ export default function SingleAlbum() {
               <strong>Reviews</strong>
               {loaded ? (
                 <p id="album-average-score">
-                  Average: {calculateAvgScore(reviews)}
+                  Average score: {calculateAvgScore(reviews)}
                 </p>
               ) : (
                 <p id="album-average-score">...</p>
