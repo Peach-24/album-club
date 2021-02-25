@@ -4,7 +4,7 @@
 
 ---
 
-**Brief**
+### Brief
 
 In 2020, my friends and I came up with the idea of taking turns nominating a lesser-listened-to album for us to listen to and then share a written review and score. It kept us in touch over various lockdowns and helped vary our usual musical digest. Because we were doing it via a messaging app, there were logistical issues that hampered the overall experience of our 'Album Club' idea. It wasn't easy to quickly find out what the current album was, nor could we view reviews submitted by others without having to scroll through endless messages in the chat.
 
