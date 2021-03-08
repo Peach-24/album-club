@@ -33,7 +33,6 @@ export default function SingleAlbum() {
             reviewsList.push(doc.data());
           });
           setReviews(reviewsList);
-          // setLoaded(true);
         }
       });
 

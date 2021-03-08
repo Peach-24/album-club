@@ -45,7 +45,7 @@ const Navigation = (props) => {
         role="navigation"
       >
         <div className="container-fluid">
-          <a className="navbar-brand" href="/home">
+          <a className="navbar-brand" href="/">
             <FontAwesomeIcon size="lg" icon={faHome} />
           </a>
           <Nav className="ml-auto">

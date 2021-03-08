@@ -10,7 +10,12 @@ export default function WriteReview({ album }) {
   const [postMessage, setPostMessage] = useState("");
 
   const handlePost = () => {
-    if (name !== "" && reviewBody !== "" && score !== "") {
+    if (
+      name !== "" &&
+      reviewBody !== "" &&
+      Number(score) > 0 &&
+      Number(score) <= 10
+    ) {
       setPostReviewClicked(true);
       const reviewObj = {
         author: name,
@@ -41,7 +46,7 @@ export default function WriteReview({ album }) {
         })
         .catch((err) => console.log(err));
     } else {
-      setPostMessage("All fields must be filled in.");
+      setPostMessage("All fields must be filled in correctly.");
     }
   };
 
@@ -77,7 +82,9 @@ export default function WriteReview({ album }) {
         </label>
         <label htmlFor="score">
           <div id="score-container">
-            <p>Score ?/10</p>
+            <p>
+              Score out of <strong>10</strong>
+            </p>
             <input
               id="review-score"
               type="number"
