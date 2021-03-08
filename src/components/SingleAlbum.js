@@ -11,6 +11,7 @@ import { calculateAvgScore } from "../utils/formatters";
 export default function SingleAlbum() {
   const [loaded, setLoaded] = useState(false);
   const [reviews, setReviews] = useState([]);
+  const [suggestedBy, setSuggestedBy] = useState("");
 
   let history = useHistory();
   let pathSplits = history.location.pathname.split("/");
@@ -20,6 +21,7 @@ export default function SingleAlbum() {
   useEffect(() => {
     let mounted = true;
     const db = firebase.firestore();
+
     db.collection("reviews")
       .doc(albumName)
       .collection("submissions")
@@ -31,8 +33,23 @@ export default function SingleAlbum() {
             reviewsList.push(doc.data());
           });
           setReviews(reviewsList);
-          setLoaded(true);
+          // setLoaded(true);
         }
+      });
+
+    db.collection("suggested_albums")
+      .doc(albumName)
+      .get()
+      .then((doc) => {
+        if (doc.exists) {
+          setSuggestedBy(doc.data().author);
+          setLoaded(true);
+        } else {
+          console.log("No such document!");
+        }
+      })
+      .catch((error) => {
+        console.log("Error getting document:", error);
       });
 
     return () => (mounted = false);
@@ -45,11 +62,14 @@ export default function SingleAlbum() {
         <div id="album-reviews-box">
           <div id="album-review-list-header">
             <h4 id="album-reviews-list-heading">
-              <strong>Reviews</strong>
+              <strong>{albumName}</strong>
               {loaded ? (
-                <p id="album-average-score">
-                  Average score: {calculateAvgScore(reviews)}
-                </p>
+                <>
+                  <p id="album-average-score">Suggested by {suggestedBy}</p>
+                  <p id="album-average-score">
+                    Average score: <strong>{calculateAvgScore(reviews)}</strong>
+                  </p>
+                </>
               ) : (
                 <p id="album-average-score">...</p>
               )}
