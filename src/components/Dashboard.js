@@ -6,7 +6,7 @@ import "firebase/firebase-firestore";
 import Header from "./Header";
 import WriteReview from "./WriteReview";
 
-import { secondsToDatePlusWeek, trimDateString } from "../utils/formatters";
+import { trimDateString } from "../utils/formatters";
 
 export default function Dashboard({ currentAlbum, fetchReviews }) {
   const [clickedReview, setClickedReview] = useState(false);

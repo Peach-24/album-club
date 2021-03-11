@@ -1,11 +1,5 @@
-export const secondsToDatePlusWeek = (secs) => {
-  secs += 604800;
-  var t = new Date(1970, 0, 1); // Epoch
-  t.setSeconds(secs);
-  return t;
-};
-
-export const trimDateString = (str) => {
+const trimDateString = (str) => {
+  if (str === "") return "";
   let splits = str.split(" ");
   let selected = [];
   for (let i = 0; i < 3; i++) {
@@ -14,7 +8,8 @@ export const trimDateString = (str) => {
   return selected.join(" ");
 };
 
-export const calculateAvgScore = (arr) => {
+const calculateAvgScore = (arr) => {
+  if (arr.length === 0) return "N/A";
   let total = 0;
   arr.forEach((review) => {
     total += Number(review.score);
@@ -22,7 +17,15 @@ export const calculateAvgScore = (arr) => {
   return (total / arr.length).toFixed(1);
 };
 
-export const addListeningDates = (arr) => {
+const secondsToDatePlusWeek = (secs) => {
+  secs += 604800;
+  var t = new Date(1970, 0, 1); // Epoch
+  t.setSeconds(secs);
+  return t;
+};
+
+const addListeningDates = (arr) => {
+  if (arr.length === 0) return [];
   let latestEndDate = "";
   let first = arr[0];
   first["start_date"] = first.created_at.toDate().toString();
@@ -37,4 +40,11 @@ export const addListeningDates = (arr) => {
   }
 
   return arr;
+};
+
+module.exports = {
+  secondsToDatePlusWeek,
+  trimDateString,
+  calculateAvgScore,
+  addListeningDates,
 };
