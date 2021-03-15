@@ -19,13 +19,6 @@ export default function Suggest() {
       setSubmitting(true);
       const db = firebase.firestore();
 
-      /** ADDING TIMESTAMPS
-       * IF suggested_albums collection in firebase is empty, then startDate = `created_at: firebase.firestore.FieldValue.serverTimestamp()`
-       * IF suggested_albums collection has a document in it
-       *
-       *
-       */
-
       api.fetchArtworkURL(spotifyLink).then((link) => {
         db.collection("suggested_albums")
           .doc(album)

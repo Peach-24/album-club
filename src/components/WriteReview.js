@@ -32,6 +32,7 @@ export default function WriteReview({ album }) {
           artwork: album.artwork,
           artist: album.artist_name,
           album: album.album_name,
+          created_at: firebase.firestore.FieldValue.serverTimestamp(),
         })
         .then(() => {
           db.collection("reviews")
