@@ -19,26 +19,39 @@ export default function Suggest() {
       setSubmitting(true);
       const db = firebase.firestore();
 
-      api.fetchArtworkURL(spotifyLink).then((link) => {
-        db.collection("suggested_albums")
-          .doc(album)
-          .set({
-            artist_name: artist,
-            album_name: album,
-            spotify_link: spotifyLink,
-            author: name,
-            artwork: link,
-            created_at: firebase.firestore.FieldValue.serverTimestamp(),
-          })
-          .then(() => {
-            console.log("Successfully submitted.");
-            setErrorMsg("Success!");
-            setSubmitting(false);
-          })
-          .catch((err) => {
-            console.log("Error:", err);
+      db.collection("suggested_albums")
+        .get()
+        .then((querySnapshot) => {
+          let holdingArr = [];
+          querySnapshot.forEach((doc) => {
+            holdingArr.push(doc.data());
           });
-      });
+          let count = holdingArr.length + 1;
+          return count;
+        })
+        .then((count) => {
+          api.fetchArtworkURL(spotifyLink).then((link) => {
+            db.collection("suggested_albums")
+              .doc(album)
+              .set({
+                album_id: count,
+                artist_name: artist,
+                album_name: album,
+                spotify_link: spotifyLink,
+                author: name,
+                artwork: link,
+                created_at: firebase.firestore.FieldValue.serverTimestamp(),
+              })
+              .then(() => {
+                console.log("Successfully submitted.");
+                setErrorMsg("Success!");
+                setSubmitting(false);
+              })
+              .catch((err) => {
+                console.log("Error:", err);
+              });
+          });
+        });
     } else {
       setErrorMsg("All fields must be filled in.");
     }

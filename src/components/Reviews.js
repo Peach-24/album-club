@@ -23,9 +23,7 @@ export default function Reviews() {
           querySnapshot.forEach((doc) => {
             albumsList.push(doc.data());
           });
-          // console.log(albumsList);
           setAlbums(albumsList);
-          console.log("Reviewed Albums:", albumsList);
           setLoaded(true);
         }
       });
@@ -42,7 +40,7 @@ export default function Reviews() {
               {albums.map((album) => {
                 return (
                   <li key={album.album} id="reviews-list-item">
-                    <Link to={`/reviews/${album.album}`}>
+                    <Link to={`/reviews/${album.album_id}`}>
                       <img
                         id="reviews-list-album-cover"
                         src={album.artwork || "https://via.placeholder.com/300"}
