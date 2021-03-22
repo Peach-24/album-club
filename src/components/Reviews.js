@@ -15,7 +15,7 @@ export default function Reviews() {
     let mounted = true;
     const db = firebase.firestore();
     db.collection("reviews")
-      .orderBy("created_at")
+      .orderBy("created_at", "desc")
       .get()
       .then((querySnapshot) => {
         if (mounted) {

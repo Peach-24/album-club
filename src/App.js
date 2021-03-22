@@ -17,7 +17,7 @@ import SingleAlbumScreen from "./components/SingleAlbum";
 import Login from "./components/auth/Login";
 
 export default function App() {
-  // const [user, setUser] = useState({});
+  const [user, setUser] = useState({});
   const [loggedIn, setLoggedIn] = useState(false);
   const [albums, setAlbums] = useState([]);
   const [currentAlbum, setCurrentAlbum] = useState({});
@@ -76,7 +76,7 @@ export default function App() {
       .signInWithEmailAndPassword(email, password)
       .then((userCredential) => {
         // console.log(user);
-        // setUser(userCredential.user);
+        setUser(userCredential.user);
         setLoggedIn(true);
       })
       .catch((error) => {
