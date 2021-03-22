@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 import "../App.css";
-import firebase from "firebase";
-import "firebase/firebase-firestore";
 
 import Header from "./Header";
 import WriteReview from "./WriteReview";

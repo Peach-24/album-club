@@ -17,6 +17,7 @@ export default function WriteReview({ album }) {
       Number(score) <= 10
     ) {
       setPostReviewClicked(true);
+      console.log(reviewBody);
       const reviewObj = {
         author: name,
         reviewBody,

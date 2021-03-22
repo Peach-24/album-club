@@ -59,7 +59,7 @@ export default function Suggest() {
 
   return (
     <>
-      <Header title="Nominate an album" />
+      <Header title="Suggest an album" />
       <div id="suggest-container">
         <div id="submit-album-form">
           <p>Fill in the details of the album you want to put forward.</p>

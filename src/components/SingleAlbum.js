@@ -52,13 +52,13 @@ export default function SingleAlbum() {
       });
 
     return () => (mounted = false);
-  }, []);
+  }, [albumId]);
 
   return (
     <>
       {loaded ? (
         <>
-          <Header title={reviews[0].album} />
+          <Header title={reviews[0].artist} />
           <div id="album-reviews-container">
             <div id="album-reviews-box">
               <div id="album-review-list-header">

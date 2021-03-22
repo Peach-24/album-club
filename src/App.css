@@ -26,6 +26,10 @@ h3 {
   margin-bottom: 0;
 }
 
+body {
+  background-attachment: fixed;
+}
+
 button {
   background-color: rgba(255, 255, 255, 0.473);
   color: #000;
@@ -64,7 +68,7 @@ button {
 #current-album-info {
   text-align: left;
   width: 80%;
-  max-width: 700px;
+  max-width: 500px;
   margin: 15px auto;
   padding: 1rem;
   font-size: 14px;
@@ -128,6 +132,7 @@ button {
 #your-review-body {
   width: 100%;
   height: 200px;
+  white-space: pre-wrap;
 }
 
 #review-score {
@@ -160,6 +165,12 @@ button {
   width: 60%;
 }
 
+#login-form {
+  display: block;
+  max-width: 250px;
+  margin: auto;
+}
+
 .password-login-container {
   width: 100%;
   height: 100vh;
@@ -177,7 +188,7 @@ button {
 }
 
 #login-logo {
-  width: 35%;
+  width: 125px;
   height: auto;
   margin: 1.5rem;
 }
@@ -287,6 +298,7 @@ button {
 }
 #album-review-body {
   font-size: 14px;
+  white-space: pre-wrap;
 }
 #album-review-score {
   color: #000;
