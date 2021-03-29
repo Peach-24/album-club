@@ -29,7 +29,7 @@ export default function Schedule({ albums, fetchAlbums }) {
                     <h5 id="schedule-album-name">{album.album_name}</h5>
                     <p id="schedule-artist-name">By {album.artist_name}</p>
                     <p id="schedule-author-name">
-                      ~ {album.author} {"//"}
+                      ~ {album.author} {"// "}
                       {trimDateString(album.start_date.toString())}
                     </p>
                   </div>
