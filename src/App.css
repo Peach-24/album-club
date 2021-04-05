@@ -222,14 +222,15 @@ button {
 
 #reviews-list {
   margin: 0;
+  padding-top: 1em;
   padding-left: 0;
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: space-evenly;
 }
 
 #reviews-list-item {
-  margin: 1rem;
+  margin: 1em;
   list-style-type: none;
   width: 34%;
   max-width: 225px;
@@ -377,7 +378,7 @@ button {
   list-style: none;
   padding: 10px;
   display: flex;
-  width: 90%;
+  width: 95%;
   max-width: 700px;
   margin: 15px auto;
   border-radius: 5px;
@@ -412,4 +413,37 @@ button {
   font-family: monospace;
   color: rgb(88, 88, 88);
   margin: 0;
+}
+
+/******** Desktop - Write review, Schedule ********/
+
+@media only screen and (min-width: 600px) {
+  #write-review-container {
+    margin: 1rem auto;
+    width: 55%;
+    max-width: 750px;
+  }
+  #write-review-box {
+    padding: 1rem 2rem;
+  }
+  #schedule-list-album-cover {
+    width: 100px;
+    height: 100px;
+    margin: 10px;
+  }
+  #schedule-list-album-info {
+    height: 100px;
+    margin-top: 1rem;
+    margin-left: 2rem;
+    text-align: left;
+  }
+  #schedule-album-name {
+    font-size: 18px;
+  }
+  #schedule-artist-name {
+    font-size: 16px;
+  }
+  #schedule-author-name {
+    font-size: 15px;
+  }
 }
