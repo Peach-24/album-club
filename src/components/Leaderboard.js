@@ -1,7 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import "../App.css";
-import firebase from "firebase";
-import "firebase/firebase-firestore";
 
 export default function Leaderboard({ scores }) {
   const orderedScores = scores.sort((a, b) => {
@@ -12,18 +10,27 @@ export default function Leaderboard({ scores }) {
     return 0;
   });
 
+  const renderTableData = () => {
+    return orderedScores.map((scores, index) => {
+      const { album, artist, avg_score } = scores;
+      return (
+        <tr key={index}>
+          <strong>
+            <td id="avg-score">{avg_score}</td>
+          </strong>
+          <td>
+            <em>{album}</em>
+          </td>
+        </tr>
+      );
+    });
+  };
+
   return (
     <>
-      <h3>Leaderboard</h3>
-      <ol>
-        {orderedScores.map((album) => {
-          return (
-            <li key={album.album}>
-              {album.album} by {album.artist}: {album.avg_score}
-            </li>
-          );
-        })}
-      </ol>
+      <table class="rankings">
+        <tbody class="rankings-table">{renderTableData()}</tbody>
+      </table>
     </>
   );
 }

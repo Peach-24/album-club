@@ -72,9 +72,6 @@ export default function Reviews() {
         <div id="reviews-box">
           {loaded ? (
             <>
-              <button onClick={() => displayLeaderboard()}>
-                Toggle Leaderboard
-              </button>
               <ol id="reviews-list">
                 {albums.map((album) => {
                   return (
@@ -92,6 +89,9 @@ export default function Reviews() {
                   );
                 })}
               </ol>
+              <button onClick={() => displayLeaderboard()}>
+                Toggle rankings
+              </button>
               {displayRankings ? <Leaderboard scores={scores} /> : <p></p>}
             </>
           ) : (

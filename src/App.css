@@ -208,16 +208,42 @@ button {
   font-size: 15px;
 }
 
+/****** Leaderboard ******/
+
+.rankings {
+  background-color: #fff;
+  margin: 15px auto;
+  list-style-type: none;
+  border-radius: 3px;
+}
+
+#avg-score {
+  padding: 5px;
+  padding: 7px 15px;
+}
+
+td {
+  font-size: 14px;
+  padding: 7px 15px;
+}
+
+@media only screen and (min-width: 600px) {
+  td {
+    font-size: 18px;
+    padding: 7px 15px;
+  }
+}
+
 /****** Reviews ******/
 #reviews-container {
   background-color: rgba(139, 0, 0, 0.836);
   width: 100%;
   min-height: 100vh;
-  padding: 0;
 }
 #reviews-box {
   margin: 0;
   text-align: center;
+  padding-bottom: 100px;
 }
 
 #reviews-list {
