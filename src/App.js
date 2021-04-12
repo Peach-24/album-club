@@ -35,7 +35,6 @@ export default function App() {
             albumsList.push(doc.data());
           });
           let withDates = addListeningDates(albumsList);
-          console.log("Albums with dates", withDates);
           setCurrentAlbumActive(withDates);
           setAlbums(withDates);
         }
@@ -60,12 +59,6 @@ export default function App() {
         Date.parse(album.end_date) > today
       ) {
         setCurrentAlbum(album);
-        console.log(
-          "Current album is:",
-          currentAlbum.album_name,
-          "by",
-          currentAlbum.artist_name
-        );
       }
     }
   };

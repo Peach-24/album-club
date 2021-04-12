@@ -20,6 +20,7 @@ export default function SingleAlbum() {
 
   useEffect(() => {
     let mounted = true;
+
     const db = firebase.firestore();
 
     db.collection("reviews")
