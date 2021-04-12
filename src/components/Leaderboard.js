@@ -19,9 +19,7 @@ export default function Leaderboard({ scores }) {
             <td id="avg-score">{avg_score}</td>
           </strong>
           <td>
-            <em>
-              {album} - {artist}
-            </em>
+            <em>{album}</em> - {artist}
           </td>
         </tr>
       );

@@ -76,7 +76,7 @@ export default function Reviews() {
                 id="toggle-rankings-btn"
                 onClick={() => displayLeaderboard()}
               >
-                Toggle rankings
+                Rankings
               </button>
               {displayRankings ? <Leaderboard scores={scores} /> : <p></p>}
               <ol id="reviews-list">
