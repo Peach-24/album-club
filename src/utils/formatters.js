@@ -18,8 +18,9 @@ const calculateAvgScore = (arr) => {
 };
 
 const secondsToDatePlusWeek = (secs) => {
-  secs += 604800;
-  var t = new Date(1970, 0, 1); // Epoch
+  // change secs depending on GMT // BST clocks
+  secs += 604800 + 3600;
+  var t = new Date(1970, 0, 1);
   t.setSeconds(secs);
   return t;
 };
