@@ -22,33 +22,37 @@ export default function SingleAlbum() {
     let mounted = true;
 
     const db = firebase.firestore();
-
+ 
     db.collection("reviews")
       .doc(albumId)
       .collection("submissions")
       .get()
       .then((querySnapshot) => {
+    
         if (mounted) {
           let reviewsList = [];
           querySnapshot.forEach((doc) => {
             reviewsList.push(doc.data());
           });
+          console.log('>>> ', reviewsList[0].album)
           setReviews(reviewsList);
-
-          db.collection("suggested_albums")
-            .doc(reviewsList[0].album)
-            .get()
-            .then((doc) => {
-              if (doc.exists) {
-                setSuggestedBy(doc.data().author);
+          
+          // db.collection("suggested_albums")
+          //   .doc(reviewsList[0].album)
+          //   .get()
+          //   .then((doc) => {
+          //     console.log(doc.data())
+          //     console.log(doc.author)
+          //     if (doc.exists) {
+                // setSuggestedBy(doc.data().author);
                 setLoaded(true);
-              } else {
-                console.log("No such document!");
-              }
-            })
-            .catch((error) => {
-              console.log("Error getting document:", error);
-            });
+        //       } else {
+        //         console.log("No such document!");
+        //       }
+        //     })
+        //     .catch((error) => {
+        //       console.log("Error getting document:", error);
+        //     });
         }
       });
 
@@ -66,7 +70,7 @@ export default function SingleAlbum() {
                 <h4 id="album-reviews-list-heading">
                   <strong>{reviews[0].album}</strong>
                   <>
-                    <p id="album-average-score">Suggested by {suggestedBy}</p>
+                    {/* <p id="album-average-score">Suggested by {suggestedBy}</p> */}
                     <p id="album-average-score">
                       Average score:{" "}
                       <strong>{calculateAvgScore(reviews)}</strong>
@@ -74,9 +78,9 @@ export default function SingleAlbum() {
                   </>
                 </h4>
               </div>
-
+       
               <ol id="album-reviews-list">
-                {reviews.map((review) => {
+                { reviews.map((review) => {
                   return (
                     <li key={review.author} id="album-reviews-list-item">
                       <h5 id="album-review-author">{review.author}</h5>
