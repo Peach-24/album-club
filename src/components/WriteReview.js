@@ -8,7 +8,7 @@ export default function WriteReview({ album }) {
   const [score, setScore] = useState(0);
   const [postReviewClicked, setPostReviewClicked] = useState(false);
   const [postMessage, setPostMessage] = useState("");
-
+  
   const handlePost = () => {
     if (
       name !== "" &&
@@ -17,13 +17,13 @@ export default function WriteReview({ album }) {
       Number(score) <= 10
     ) {
       setPostReviewClicked(true);
-      console.log(reviewBody);
       const reviewObj = {
         author: name,
         reviewBody,
         score,
         album: album.album_name,
         artist: album.artist_name,
+        suggested_by: album.author,
       };
       const db = firebase.firestore();
 
@@ -37,6 +37,7 @@ export default function WriteReview({ album }) {
           album_id: album.album_id,
         })
         .then(() => {
+          
           db.collection("reviews")
             .doc(album.album_id.toString())
             .collection("submissions")

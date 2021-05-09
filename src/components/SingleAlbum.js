@@ -34,25 +34,9 @@ export default function SingleAlbum() {
           querySnapshot.forEach((doc) => {
             reviewsList.push(doc.data());
           });
-          console.log('>>> ', reviewsList[0].album)
+          setSuggestedBy(reviewsList[0].suggested_by)
           setReviews(reviewsList);
-          
-          // db.collection("suggested_albums")
-          //   .doc(reviewsList[0].album)
-          //   .get()
-          //   .then((doc) => {
-          //     console.log(doc.data())
-          //     console.log(doc.author)
-          //     if (doc.exists) {
-                // setSuggestedBy(doc.data().author);
-                setLoaded(true);
-        //       } else {
-        //         console.log("No such document!");
-        //       }
-        //     })
-        //     .catch((error) => {
-        //       console.log("Error getting document:", error);
-        //     });
+          setLoaded(true);
         }
       });
 
@@ -70,7 +54,7 @@ export default function SingleAlbum() {
                 <h4 id="album-reviews-list-heading">
                   <strong>{reviews[0].album}</strong>
                   <>
-                    {/* <p id="album-average-score">Suggested by {suggestedBy}</p> */}
+                    <p id="album-average-score">Suggested by {suggestedBy}</p>
                     <p id="album-average-score">
                       Average score:{" "}
                       <strong>{calculateAvgScore(reviews)}</strong>
