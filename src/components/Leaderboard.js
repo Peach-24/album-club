@@ -2,6 +2,7 @@ import React from "react";
 import "../App.css";
 
 export default function Leaderboard({ scores }) {
+  // console.log(scores);
   const orderedScores = scores.sort((a, b) => {
     let keyA = parseFloat(a.avg_score);
     let keyB = parseFloat(b.avg_score);
